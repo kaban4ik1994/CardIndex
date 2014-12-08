@@ -1,0 +1,9 @@
+E:\Dev\Github\Github\CardIndex\CardIndex.Entities\bin\Debug\CardIndex.Entities.dll.config
+E:\Dev\Github\Github\CardIndex\CardIndex.Entities\bin\Debug\CardIndex.Entities.dll
+E:\Dev\Github\Github\CardIndex\CardIndex.Entities\bin\Debug\CardIndex.Entities.pdb
+E:\Dev\Github\Github\CardIndex\CardIndex.Entities\bin\Debug\EntityFramework.dll
+E:\Dev\Github\Github\CardIndex\CardIndex.Entities\bin\Debug\EntityFramework.SqlServer.dll
+E:\Dev\Github\Github\CardIndex\CardIndex.Entities\bin\Debug\EntityFramework.xml
+E:\Dev\Github\Github\CardIndex\CardIndex.Entities\bin\Debug\EntityFramework.SqlServer.xml
+E:\Dev\Github\Github\CardIndex\CardIndex.Entities\obj\Debug\CardIndex.Entities.dll
+E:\Dev\Github\Github\CardIndex\CardIndex.Entities\obj\Debug\CardIndex.Entities.pdb

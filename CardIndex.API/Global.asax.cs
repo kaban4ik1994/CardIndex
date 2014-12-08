@@ -1,7 +1,5 @@
 ﻿using System.Data.Entity;
 using System.Web.Http;
-using System.Web.Mvc;
-using System.Web.Routing;
 using AutoMapper;
 using CardIndex.Context;
 using CardIndex.Mappings;
@@ -12,9 +10,7 @@ namespace CardIndex.API
     {
         protected void Application_Start()
         {
-            AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
-            RouteConfig.RegisterRoutes(RouteTable.Routes);
             InitilizeMapper();
             Database.SetInitializer(new CardIndexContextInitializer());
         }

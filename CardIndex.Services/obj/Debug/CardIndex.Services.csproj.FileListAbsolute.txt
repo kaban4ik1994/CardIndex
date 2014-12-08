@@ -1,0 +1,15 @@
+E:\Dev\Github\Github\CardIndex\CardIndex.Services\bin\Debug\CardIndex.Services.dll
+E:\Dev\Github\Github\CardIndex\CardIndex.Services\bin\Debug\CardIndex.Services.pdb
+E:\Dev\Github\Github\CardIndex\CardIndex.Services\bin\Debug\CardIndex.DBInteractions.dll
+E:\Dev\Github\Github\CardIndex\CardIndex.Services\bin\Debug\CardIndex.Entities.dll
+E:\Dev\Github\Github\CardIndex\CardIndex.Services\bin\Debug\CardIndex.Repositories.dll
+E:\Dev\Github\Github\CardIndex\CardIndex.Services\bin\Debug\CardIndex.Context.dll
+E:\Dev\Github\Github\CardIndex\CardIndex.Services\bin\Debug\EntityFramework.dll
+E:\Dev\Github\Github\CardIndex\CardIndex.Services\bin\Debug\CardIndex.DBInteractions.pdb
+E:\Dev\Github\Github\CardIndex\CardIndex.Services\bin\Debug\CardIndex.Entities.pdb
+E:\Dev\Github\Github\CardIndex\CardIndex.Services\bin\Debug\CardIndex.Repositories.pdb
+E:\Dev\Github\Github\CardIndex\CardIndex.Services\bin\Debug\CardIndex.Context.pdb
+E:\Dev\Github\Github\CardIndex\CardIndex.Services\bin\Debug\EntityFramework.xml
+E:\Dev\Github\Github\CardIndex\CardIndex.Services\obj\Debug\CardIndex.Services.csprojResolveAssemblyReference.cache
+E:\Dev\Github\Github\CardIndex\CardIndex.Services\obj\Debug\CardIndex.Services.dll
+E:\Dev\Github\Github\CardIndex\CardIndex.Services\obj\Debug\CardIndex.Services.pdb

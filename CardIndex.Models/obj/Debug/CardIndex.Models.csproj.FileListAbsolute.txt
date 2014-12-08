@@ -1,0 +1,4 @@
+E:\Dev\Github\Github\CardIndex\CardIndex.Models\bin\Debug\CardIndex.Models.dll
+E:\Dev\Github\Github\CardIndex\CardIndex.Models\bin\Debug\CardIndex.Models.pdb
+E:\Dev\Github\Github\CardIndex\CardIndex.Models\obj\Debug\CardIndex.Models.dll
+E:\Dev\Github\Github\CardIndex\CardIndex.Models\obj\Debug\CardIndex.Models.pdb

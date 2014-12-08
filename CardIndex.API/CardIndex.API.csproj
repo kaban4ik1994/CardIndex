@@ -61,6 +61,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -89,6 +90,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\BookController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -105,13 +107,36 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CardIndex.Context\CardIndex.Context.csproj">
+      <Project>{cf67ca3c-2b2b-408f-a5b9-a622638591ca}</Project>
+      <Name>CardIndex.Context</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CardIndex.DBInteractions\CardIndex.DBInteractions.csproj">
+      <Project>{3467b9d5-84ec-4880-868c-22beffc98433}</Project>
+      <Name>CardIndex.DBInteractions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CardIndex.Entities\CardIndex.Entities.csproj">
+      <Project>{7e91a681-8612-4d5f-bcae-c55df038e384}</Project>
+      <Name>CardIndex.Entities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CardIndex.Mappings\CardIndex.Mappings.csproj">
       <Project>{0ee60eb6-4c8f-475e-85a3-2bbd630b0d3f}</Project>
       <Name>CardIndex.Mappings</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CardIndex.Models\CardIndex.Models.csproj">
+      <Project>{9c5d1166-43fc-4d1a-ac28-f11ab9b24d7d}</Project>
+      <Name>CardIndex.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CardIndex.Repositories\CardIndex.Repositories.csproj">
+      <Project>{c594e1a7-f1d3-4f50-968e-04e2f4212da7}</Project>
+      <Name>CardIndex.Repositories</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CardIndex.Services\CardIndex.Services.csproj">
+      <Project>{4aa60940-11dc-485f-985a-a54b9295a9c4}</Project>
+      <Name>CardIndex.Services</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

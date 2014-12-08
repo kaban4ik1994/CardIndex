@@ -1,0 +1,14 @@
+E:\Dev\Github\Github\CardIndex\CardIndex.DBInteractions\bin\Debug\CardIndex.DBInteractions.dll.config
+E:\Dev\Github\Github\CardIndex\CardIndex.DBInteractions\bin\Debug\CardIndex.DBInteractions.dll
+E:\Dev\Github\Github\CardIndex\CardIndex.DBInteractions\bin\Debug\CardIndex.DBInteractions.pdb
+E:\Dev\Github\Github\CardIndex\CardIndex.DBInteractions\bin\Debug\CardIndex.Context.dll
+E:\Dev\Github\Github\CardIndex\CardIndex.DBInteractions\bin\Debug\EntityFramework.dll
+E:\Dev\Github\Github\CardIndex\CardIndex.DBInteractions\bin\Debug\EntityFramework.SqlServer.dll
+E:\Dev\Github\Github\CardIndex\CardIndex.DBInteractions\bin\Debug\CardIndex.Entities.dll
+E:\Dev\Github\Github\CardIndex\CardIndex.DBInteractions\bin\Debug\CardIndex.Context.pdb
+E:\Dev\Github\Github\CardIndex\CardIndex.DBInteractions\bin\Debug\EntityFramework.xml
+E:\Dev\Github\Github\CardIndex\CardIndex.DBInteractions\bin\Debug\EntityFramework.SqlServer.xml
+E:\Dev\Github\Github\CardIndex\CardIndex.DBInteractions\bin\Debug\CardIndex.Entities.pdb
+E:\Dev\Github\Github\CardIndex\CardIndex.DBInteractions\obj\Debug\CardIndex.DBInteractions.csprojResolveAssemblyReference.cache
+E:\Dev\Github\Github\CardIndex\CardIndex.DBInteractions\obj\Debug\CardIndex.DBInteractions.dll
+E:\Dev\Github\Github\CardIndex\CardIndex.DBInteractions\obj\Debug\CardIndex.DBInteractions.pdb
