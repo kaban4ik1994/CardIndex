@@ -33,4 +33,13 @@ E:\Dev\Github\Github\CardIndex\CardIndex.API\bin\System.Web.Http.WebHost.xml
 E:\Dev\Github\Github\CardIndex\CardIndex.API\obj\Debug\CardIndex.API.csprojResolveAssemblyReference.cache
 E:\Dev\Github\Github\CardIndex\CardIndex.API\obj\Debug\CardIndex.API.dll
 E:\Dev\Github\Github\CardIndex\CardIndex.API\obj\Debug\CardIndex.API.pdb
-E:\Dev\Github\Github\CardIndex\CardIndex.API\bin\System.Web.Razor.dll
+E:\Dev\Github\Github\CardIndex\CardIndex.API\bin\Microsoft.Practices.ServiceLocation.dll
+E:\Dev\Github\Github\CardIndex\CardIndex.API\bin\Microsoft.Practices.Unity.Configuration.dll
+E:\Dev\Github\Github\CardIndex\CardIndex.API\bin\Microsoft.Practices.Unity.dll
+E:\Dev\Github\Github\CardIndex\CardIndex.API\bin\Microsoft.Practices.ServiceLocation.pdb
+E:\Dev\Github\Github\CardIndex\CardIndex.API\bin\Microsoft.Practices.ServiceLocation.xml
+E:\Dev\Github\Github\CardIndex\CardIndex.API\bin\Microsoft.Practices.Unity.xml
+E:\Dev\Github\Github\CardIndex\CardIndex.API\bin\Microsoft.Practices.Unity.Configuration.xml
+E:\Dev\Github\Github\CardIndex\CardIndex.API\bin\Unity.WebApi.dll
+E:\Dev\Github\Github\CardIndex\CardIndex.API\bin\Microsoft.Practices.Unity.RegistrationByConvention.dll
+E:\Dev\Github\Github\CardIndex\CardIndex.API\bin\Microsoft.Practices.Unity.RegistrationByConvention.xml

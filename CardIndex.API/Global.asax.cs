@@ -10,6 +10,7 @@ namespace CardIndex.API
     {
         protected void Application_Start()
         {
+            UnityConfig.RegisterComponents(); 
             GlobalConfiguration.Configure(WebApiConfig.Register);
             InitilizeMapper();
             Database.SetInitializer(new CardIndexContextInitializer());

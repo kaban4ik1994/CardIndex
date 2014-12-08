@@ -1,8 +1,11 @@
 ﻿using System.Linq;
 using System.Web.Http;
 using AutoMapper;
+using CardIndex.DBInteractions.Concrete;
 using CardIndex.Entities;
 using CardIndex.Models;
+using CardIndex.Repositories.Concrete;
+using CardIndex.Services.Concrete;
 using CardIndex.Services.Interface;
 using Newtonsoft.Json;
 
@@ -10,7 +13,6 @@ namespace CardIndex.API.Controllers
 {
     public class BookController : ApiController
     {
-        
         private readonly IBookService _bookService;
 
         public BookController(IBookService bookService)
