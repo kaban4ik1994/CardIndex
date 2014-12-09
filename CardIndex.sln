@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardIndex.UI", "CardIndex.UI\CardIndex.UI.csproj", "{311D6A72-099E-43F7-97EB-4BC425CAF749}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardIndex.API", "CardIndex.API\CardIndex.API.csproj", "{33A5AC81-0B49-4805-83E9-171D03D769A0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardIndex.Entities", "CardIndex.Entities\CardIndex.Entities.csproj", "{7E91A681-8612-4D5F-BCAE-C55DF038E384}"
@@ -12,8 +10,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardIndex.Repositories", "CardIndex.Repositories\CardIndex.Repositories.csproj", "{C594E1A7-F1D3-4F50-968E-04E2F4212DA7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardIndex.DBInteractions", "CardIndex.DBInteractions\CardIndex.DBInteractions.csproj", "{3467B9D5-84EC-4880-868C-22BEFFC98433}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardIndex.Data", "CardIndex.Data\CardIndex.Data.csproj", "{3ADB770C-00AF-4C44-805B-1FFEBD898265}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardIndex.Context", "CardIndex.Context\CardIndex.Context.csproj", "{CF67CA3C-2B2B-408F-A5B9-A622638591CA}"
 EndProject
@@ -23,16 +19,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardIndex.Mappings", "CardI
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardIndex.Services", "CardIndex.Services\CardIndex.Services.csproj", "{4AA60940-11DC-485F-985A-A54B9295A9C4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardIndex.UI", "CardIndex.UI\CardIndex.UI.csproj", "{6EE9C788-58BD-452D-810B-31B9A4D9DB1E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardIndex.Helpers", "CardIndex.Helpers\CardIndex.Helpers.csproj", "{8B8B824E-EFB4-42F0-A58F-2DA3BD980715}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{311D6A72-099E-43F7-97EB-4BC425CAF749}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{311D6A72-099E-43F7-97EB-4BC425CAF749}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{311D6A72-099E-43F7-97EB-4BC425CAF749}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{311D6A72-099E-43F7-97EB-4BC425CAF749}.Release|Any CPU.Build.0 = Release|Any CPU
 		{33A5AC81-0B49-4805-83E9-171D03D769A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{33A5AC81-0B49-4805-83E9-171D03D769A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{33A5AC81-0B49-4805-83E9-171D03D769A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -49,10 +45,6 @@ Global
 		{3467B9D5-84EC-4880-868C-22BEFFC98433}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3467B9D5-84EC-4880-868C-22BEFFC98433}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3467B9D5-84EC-4880-868C-22BEFFC98433}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3ADB770C-00AF-4C44-805B-1FFEBD898265}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3ADB770C-00AF-4C44-805B-1FFEBD898265}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3ADB770C-00AF-4C44-805B-1FFEBD898265}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3ADB770C-00AF-4C44-805B-1FFEBD898265}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CF67CA3C-2B2B-408F-A5B9-A622638591CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CF67CA3C-2B2B-408F-A5B9-A622638591CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CF67CA3C-2B2B-408F-A5B9-A622638591CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -69,6 +61,14 @@ Global
 		{4AA60940-11DC-485F-985A-A54B9295A9C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4AA60940-11DC-485F-985A-A54B9295A9C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4AA60940-11DC-485F-985A-A54B9295A9C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6EE9C788-58BD-452D-810B-31B9A4D9DB1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EE9C788-58BD-452D-810B-31B9A4D9DB1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EE9C788-58BD-452D-810B-31B9A4D9DB1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EE9C788-58BD-452D-810B-31B9A4D9DB1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B8B824E-EFB4-42F0-A58F-2DA3BD980715}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B8B824E-EFB4-42F0-A58F-2DA3BD980715}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B8B824E-EFB4-42F0-A58F-2DA3BD980715}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B8B824E-EFB4-42F0-A58F-2DA3BD980715}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

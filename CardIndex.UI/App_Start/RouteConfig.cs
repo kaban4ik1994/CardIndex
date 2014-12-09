@@ -1,23 +1,20 @@
-ï»¿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.Routing;
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="RouteConfig.cs" company="">
+//   Copyright © 2014 
+// </copyright>
+// --------------------------------------------------------------------------------------------------------------------
 
-namespace CardIndex.UI
+namespace App.CardIndex.UI
 {
+    using System.Web.Routing;
+
+    using App.CardIndex.UI.Routing;
+
     public class RouteConfig
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
-            routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-
-            routes.MapRoute(
-                name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
-            );
+            routes.Add("Default", new DefaultRoute());
         }
     }
 }

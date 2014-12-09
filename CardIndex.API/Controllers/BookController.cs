@@ -1,11 +1,8 @@
 ﻿using System.Linq;
 using System.Web.Http;
 using AutoMapper;
-using CardIndex.DBInteractions.Concrete;
 using CardIndex.Entities;
 using CardIndex.Models;
-using CardIndex.Repositories.Concrete;
-using CardIndex.Services.Concrete;
 using CardIndex.Services.Interface;
 using Newtonsoft.Json;
 
@@ -23,7 +20,7 @@ namespace CardIndex.API.Controllers
         [HttpGet]
         public IHttpActionResult Get()
         {
-            var dbBooks = _bookService.GetBooks();
+            var dbBooks = _bookService.GetBooks().ToList();
             var books = dbBooks.Select(Mapper.Map<Book>).ToList();
             return Json(books, new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
         }

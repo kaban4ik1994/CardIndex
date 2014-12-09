@@ -15,12 +15,16 @@ namespace CardIndex.Mappings
 
         private void MapDbBookToBook()
         {
-            CreateMap<DbBook, Book>();
+            CreateMap<DbBook, Book>()
+                .ForMember(book => book.Authors, expression => expression.MapFrom(book => book.Authors))
+                .ForMember(book => book.Genres, expression => expression.MapFrom(book => book.Genres));
         }
 
         private void MapBookToDbBook()
         {
-            CreateMap<Book, DbBook>();
+            CreateMap<Book, DbBook>()
+                .ForMember(book => book.Authors, expression => expression.MapFrom(book => book.Authors))
+                .ForMember(book => book.Genres, expression => expression.MapFrom(book => book.Genres));
         }
     }
 }

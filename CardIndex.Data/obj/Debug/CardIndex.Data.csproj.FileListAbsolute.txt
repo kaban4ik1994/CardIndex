@@ -1,5 +1,0 @@
-E:\Dev\Github\Github\CardIndex\CardIndex.Data\bin\Debug\CardIndex.Data.dll
-E:\Dev\Github\Github\CardIndex\CardIndex.Data\bin\Debug\CardIndex.Data.pdb
-E:\Dev\Github\Github\CardIndex\CardIndex.Data\obj\Debug\CardIndex.Data.csprojResolveAssemblyReference.cache
-E:\Dev\Github\Github\CardIndex\CardIndex.Data\obj\Debug\CardIndex.Data.dll
-E:\Dev\Github\Github\CardIndex\CardIndex.Data\obj\Debug\CardIndex.Data.pdb

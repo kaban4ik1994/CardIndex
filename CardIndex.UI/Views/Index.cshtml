@@ -1,0 +1,38 @@
+﻿@{
+    PageData["title"] = "AngularJS SPA Template for Visual Studio";
+}
+<h2>Welcome!</h2>
+<p>This is just a demo page. </p>
+<table class="table table-hover" ng-hide="isLoading" ng-controller="HomeCtrl">
+    <tr>
+        <th>Id</th>
+        <th>Who reported</th>
+        <th>
+            <div class="btn-group" dropdown is-open="status.isopen2">
+                <button type="button" class="btn btn-primary dropdown-toggle" ng-disabled="disabled">
+                    Date  <span class="caret"></span>
+                    <span ng-if="filterParams.sortDirection==true">(Ascending)</span>
+                    <span ng-if="filterParams.sortDirection==false">(Descending)</span>
+                    <span ng-if="filterParams.sortDirection==''"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a ng-click="chooseItem(filterParams.whoRep, filterParams.stat)">Empty</a></li>
+                    <li><a ng-click="chooseItem(filterParams.whoRep, filterParams.stat, 'Date', true)">Ascending</a></li>
+                    <li><a ng-click="chooseItem(filterParams.whoRep, filterParams.stat, 'Date', false)">Descending</a></li>
+                </ul>
+            </div>
+        </th>
+        <th>Status</th>
+        <th></th>
+        <th></th>
+    </tr>
+    <tr ng-repeat="book in books" class="at-repeat-fly-reverse-in
+         at-repeat-fly-reverse-out">
+
+        <td>{{book.Id}}</td>
+
+        <td><button class="btn btn-warning" ng-click="open(bug)">Edit</button></td>
+
+        <td><button class="btn btn-danger" ng-click="delete(bug)">Delete</button></td>
+    </tr>
+</table>

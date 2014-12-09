@@ -1,0 +1,5 @@
+E:\Dev\Github\Github\CardIndex\CardIndex.Helpers\bin\Debug\CardIndex.Helpers.dll
+E:\Dev\Github\Github\CardIndex\CardIndex.Helpers\bin\Debug\CardIndex.Helpers.pdb
+E:\Dev\Github\Github\CardIndex\CardIndex.Helpers\obj\Debug\CardIndex.Helpers.csprojResolveAssemblyReference.cache
+E:\Dev\Github\Github\CardIndex\CardIndex.Helpers\obj\Debug\CardIndex.Helpers.dll
+E:\Dev\Github\Github\CardIndex\CardIndex.Helpers\obj\Debug\CardIndex.Helpers.pdb
