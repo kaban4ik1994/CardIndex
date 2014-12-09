@@ -6,11 +6,29 @@
 angular.module('app.controllers', [])
 
     // Path: /
-    .controller('HomeCtrl', ['$scope', '$location', '$window', 'BookApi', function ($scope, $location, $window, BookApi) {
-        $scope.books = BookApi.query();
+    .controller('HomeCtrl', ['$scope', '$location', '$window', 'BookApi', function ($scope, $location, $window, bookApi) {
+        $scope.books = bookApi.query();
         $scope.$root.title = 'AngularJS SPA Template for Visual Studio';
         $scope.$on('$viewContentLoaded', function () {
             $window.ga('send', 'pageview', { 'page': $location.path(), 'title': $scope.$root.title});
+        });
+    }])
+
+    // Path: /Genres
+    .controller('GenreCtrl', ['$scope', '$location', '$window', 'GenreApi', function ($scope, $location, $window, genreApi) {
+        $scope.genres = genreApi.query();
+        $scope.$root.title = 'AngularJS SPA Template for Visual Studio';
+        $scope.$on('$viewContentLoaded', function () {
+            $window.ga('send', 'pageview', { 'page': $location.path(), 'title': $scope.$root.title });
+        });
+    }])
+
+     // Path: /Authors
+    .controller('AuthorCtrl', ['$scope', '$location', '$window', 'AuthorApi', function ($scope, $location, $window, authorApi) {
+        $scope.authors = authorApi.query();
+        $scope.$root.title = 'AngularJS SPA Template for Visual Studio';
+        $scope.$on('$viewContentLoaded', function () {
+            $window.ga('send', 'pageview', { 'page': $location.path(), 'title': $scope.$root.title });
         });
     }])
 

@@ -496,6 +496,8 @@
     <Content Include="Views\_PageStart.cshtml" />
     <Content Include="Views\About.cshtml" />
     <Content Include="Views\Templates\BookModalDialog.cshtml" />
+    <Content Include="Views\Genres.cshtml" />
+    <Content Include="Views\Authors.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

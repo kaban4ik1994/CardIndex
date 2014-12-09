@@ -1,0 +1,19 @@
+﻿@{
+    PageData["title"] = "AngularJS SPA | Genres";
+}
+<table class="table table-hover" ng-hide="isLoading">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th></th>
+        <th></th>
+    </tr>
+    <tr ng-repeat="genre in genres" class="at-repeat-fly-reverse-in
+         at-repeat-fly-reverse-out">
+
+        <td>{{genre.Id}}</td>
+        <td>{{genre.Name}}</td>
+        <td><button class="btn btn-warning" ng-click="open(bug)">Edit</button></td>
+        <td><button class="btn btn-danger" ng-click="delete(bug)">Delete</button></td>
+    </tr>
+</table>

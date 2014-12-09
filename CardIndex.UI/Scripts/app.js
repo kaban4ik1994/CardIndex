@@ -17,6 +17,18 @@ angular.module('app', ['ui.router', 'app.filters', 'app.services', 'app.directiv
                 controller: 'HomeCtrl'
 
             })
+            .state('genres', {
+                url: '/genres',
+                templateUrl: '/views/genres',
+                controller: 'GenreCtrl'
+
+            })
+            .state('authors', {
+                url: '/authors',
+                templateUrl: '/views/authors',
+                controller: 'AuthorCtrl'
+
+            })
             .state('about', {
                 url: '/about',
                 templateUrl: '/views/about',
