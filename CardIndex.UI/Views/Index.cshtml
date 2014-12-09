@@ -3,14 +3,16 @@
 }
 <h2>Welcome!</h2>
 <p>This is just a demo page. </p>
-<table class="table table-hover" ng-hide="isLoading" ng-controller="HomeCtrl">
+<table class="table table-hover" ng-hide="isLoading">
     <tr>
         <th>Id</th>
-        <th>Who reported</th>
+        <th>Name</th>
+        <th>ISBN</th>
+        <th>etc</th>
         <th>
             <div class="btn-group" dropdown is-open="status.isopen2">
                 <button type="button" class="btn btn-primary dropdown-toggle" ng-disabled="disabled">
-                    Date  <span class="caret"></span>
+                    Genres  <span class="caret"></span>
                     <span ng-if="filterParams.sortDirection==true">(Ascending)</span>
                     <span ng-if="filterParams.sortDirection==false">(Descending)</span>
                     <span ng-if="filterParams.sortDirection==''"></span>
@@ -22,7 +24,7 @@
                 </ul>
             </div>
         </th>
-        <th>Status</th>
+        <th>Authors</th>
         <th></th>
         <th></th>
     </tr>
@@ -30,9 +32,12 @@
          at-repeat-fly-reverse-out">
 
         <td>{{book.Id}}</td>
-
+        <td>{{book.Name}}</td>
+        <td>{{book.Isbn}}</td>
+        <td>{{book.Etc}}</td>
+        <td>{{book.Genres}}</td>
+        <td>{{book.Authors}}</td>
         <td><button class="btn btn-warning" ng-click="open(bug)">Edit</button></td>
-
         <td><button class="btn btn-danger" ng-click="delete(bug)">Delete</button></td>
     </tr>
 </table>

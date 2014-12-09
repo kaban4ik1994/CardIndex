@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using AutoMapper;
 using CardIndex.Entities;
 using CardIndex.Models;
@@ -8,6 +9,7 @@ using Newtonsoft.Json;
 
 namespace CardIndex.API.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class BookController : ApiController
     {
         private readonly IBookService _bookService;

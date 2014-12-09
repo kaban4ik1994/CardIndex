@@ -43,3 +43,11 @@ E:\Dev\Github\Github\CardIndex\CardIndex.API\bin\Microsoft.Practices.Unity.Confi
 E:\Dev\Github\Github\CardIndex\CardIndex.API\bin\Unity.WebApi.dll
 E:\Dev\Github\Github\CardIndex\CardIndex.API\bin\Microsoft.Practices.Unity.RegistrationByConvention.dll
 E:\Dev\Github\Github\CardIndex\CardIndex.API\bin\Microsoft.Practices.Unity.RegistrationByConvention.xml
+E:\Dev\Github\Github\CardIndex\CardIndex.API\bin\Microsoft.Owin.Cors.dll
+E:\Dev\Github\Github\CardIndex\CardIndex.API\bin\Microsoft.Owin.dll
+E:\Dev\Github\Github\CardIndex\CardIndex.API\bin\Owin.dll
+E:\Dev\Github\Github\CardIndex\CardIndex.API\bin\System.Web.Cors.dll
+E:\Dev\Github\Github\CardIndex\CardIndex.API\bin\System.Web.Http.Cors.dll
+E:\Dev\Github\Github\CardIndex\CardIndex.API\bin\Microsoft.Owin.xml
+E:\Dev\Github\Github\CardIndex\CardIndex.API\bin\Microsoft.Owin.Cors.xml
+E:\Dev\Github\Github\CardIndex\CardIndex.API\bin\System.Web.Http.Cors.xml
