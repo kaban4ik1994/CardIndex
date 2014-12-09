@@ -15,13 +15,14 @@ namespace CardIndex.Mappings
 
         private void MapGenreToDbGenre()
         {
-            CreateMap<DbGenre, Genre>();
+            CreateMap<DbGenre, Genre>()
+                .ForMember(genre => genre.Books, expression => expression.MapFrom(genre => genre.Books));
         }
 
         private void MapDbGenreToGenre()
         {
-            CreateMap<Genre, DbGenre>();
+            CreateMap<Genre, DbGenre>()
+                .ForMember(genre => genre.Books, expression => expression.MapFrom(genre => genre.Books));
         }
-
     }
 }
