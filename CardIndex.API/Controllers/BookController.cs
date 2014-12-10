@@ -45,6 +45,14 @@ namespace CardIndex.API.Controllers
         }
 
         [HttpPost]
+        public IHttpActionResult Post(Book book)
+        {
+            var dbBook = Mapper.Map<DbBook>(book);
+            _bookService.CreateBook(dbBook);
+            return Json(Mapper.Map<Genre>(dbBook), new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
+        }
+
+        [HttpDelete]
         public IHttpActionResult Delete(long id)
         {
             _bookService.DeleteBook(id);

@@ -1,7 +1,7 @@
-using CardIndex.DBInteractions.Concrete;
-using CardIndex.DBInteractions.Interface;
-using CardIndex.Repositories.Concrete;
-using CardIndex.Repositories.Interface;
+using CardIndex.Data.DBInteractions.Concrete;
+using CardIndex.Data.DBInteractions.Interface;
+using CardIndex.Data.Repositories.Concrete;
+using CardIndex.Data.Repositories.Interface;
 using CardIndex.Services.Concrete;
 using CardIndex.Services.Interface;
 using Microsoft.Practices.Unity;

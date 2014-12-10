@@ -6,17 +6,60 @@
 angular.module('app.controllers', [])
 
     // Path: /
-    .controller('HomeCtrl', ['$scope', '$location', '$window', 'BookApi', function ($scope, $location, $window, bookApi) {
+    .controller('HomeCtrl', ['$scope', '$location', '$window', '$modal', 'BookApi', function ($scope, $location, $window, $modal, bookApi) {
+        $scope.$root.isLoading = false;
         $scope.books = bookApi.query();
         $scope.$root.title = 'AngularJS SPA Template for Visual Studio';
         $scope.$on('$viewContentLoaded', function () {
-            $window.ga('send', 'pageview', { 'page': $location.path(), 'title': $scope.$root.title});
+            $window.ga('send', 'pageview', { 'page': $location.path(), 'title': $scope.$root.title });
         });
     }])
 
     // Path: /Genres
-    .controller('GenreCtrl', ['$scope', '$location', '$window', 'GenreApi', function ($scope, $location, $window, genreApi) {
-        $scope.genres = genreApi.query();
+    .controller('GenreCtrl', ['$scope', '$location', '$window', '$modal', 'GenreApi', function ($scope, $location, $window, $modal, genreApi) {
+
+        $scope.$root.isLoading = true;
+        //get genres
+        $scope.genres = genreApi.query({}, function () {
+            $scope.$root.isLoading = false;
+        });
+
+        //modal dialog
+        $scope.genreDialog = function (genre) {
+            var modalInstance = $modal.open({
+                templateUrl: '/views/templates/genrepartial',
+                controller: GenrePartialCtrl,
+                resolve: {
+                    item: function () {
+                        if (!genre) {
+                            genre = { Id: 0, Name: '' };
+                        };
+                        return genre;
+                    },
+                }
+            });
+
+            modalInstance.result.then(function (item) {
+                //if new item
+                if (item.Id == 0) {
+                    genreApi.save({}, JSON.stringify(item), function (data) {
+                        item.Id = data.Id;
+                        $scope.genres.push(item);
+                    });
+                }
+                    //else update item
+                else {
+                    genreApi.update({}, JSON.stringify(item));
+                }
+            });
+        };
+
+        //delete genre
+        $scope.delete = function (genre) {
+            genreApi.delete({ id: genre.Id });
+            _.remove($scope.genres, genre);
+        };
+
         $scope.$root.title = 'AngularJS SPA Template for Visual Studio';
         $scope.$on('$viewContentLoaded', function () {
             $window.ga('send', 'pageview', { 'page': $location.path(), 'title': $scope.$root.title });
@@ -24,8 +67,50 @@ angular.module('app.controllers', [])
     }])
 
      // Path: /Authors
-    .controller('AuthorCtrl', ['$scope', '$location', '$window', 'AuthorApi', function ($scope, $location, $window, authorApi) {
-        $scope.authors = authorApi.query();
+    .controller('AuthorCtrl', ['$scope', '$location', '$window', '$modal', 'AuthorApi', function ($scope, $location, $window, $modal, authorApi) {
+
+        $scope.$root.isLoading = true;
+        //get authors 
+        $scope.authors = authorApi.query({}, function () {
+            $scope.$root.isLoading = false;
+        });
+
+        //modal dialog
+        $scope.authorDialog = function (author) {
+            var modalInstance = $modal.open({
+                templateUrl: '/views/templates/authorpartial',
+                controller: AuthorPartialCtrl,
+                resolve: {
+                    item: function () {
+                        if (!author) {
+                            author = { Id: 0, Name: '' };
+                        };
+                        return author;
+                    },
+                }
+            });
+
+            modalInstance.result.then(function (item) {
+                //if new item
+                if (item.Id == 0) {
+                    authorApi.save({}, JSON.stringify(item), function (data) {
+                        item.Id = data.Id;
+                        $scope.authors.push(item);
+                    });
+                }
+                    //else update item
+                else {
+                    authorApi.update({}, JSON.stringify(item));
+                }
+            });
+        };
+
+        //delete genre
+        $scope.delete = function (author) {
+            authorApi.delete({ id: author.Id });
+            _.remove($scope.authors, author);
+        };
+
         $scope.$root.title = 'AngularJS SPA Template for Visual Studio';
         $scope.$on('$viewContentLoaded', function () {
             $window.ga('send', 'pageview', { 'page': $location.path(), 'title': $scope.$root.title });
@@ -42,6 +127,7 @@ angular.module('app.controllers', [])
 
     // Path: /login
     .controller('LoginCtrl', ['$scope', '$location', '$window', function ($scope, $location, $window) {
+        $scope.$root.isLoading = false;
         $scope.$root.title = 'AngularJS SPA | Sign In';
         // TODO: Authorize a user
         $scope.login = function () {
@@ -55,8 +141,39 @@ angular.module('app.controllers', [])
 
     // Path: /error/404
     .controller('Error404Ctrl', ['$scope', '$location', '$window', function ($scope, $location, $window) {
+        $scope.$root.isLoading = false;
         $scope.$root.title = 'Error 404: Page Not Found';
         $scope.$on('$viewContentLoaded', function () {
             $window.ga('send', 'pageview', { 'page': $location.path(), 'title': $scope.$root.title });
         });
     }]);
+
+var GenrePartialCtrl = function ($scope, $modalInstance, item) {
+    $scope.genre = item;
+    $scope.ok = function (genre) {
+        if ((!genre.Name == '')) {
+            $scope.error = false;
+            $modalInstance.close(genre);
+        } else {
+            $scope.error = true;
+        }
+    };
+    $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
+};
+
+var AuthorPartialCtrl = function ($scope, $modalInstance, item) {
+    $scope.author = item;
+    $scope.ok = function (author) {
+        if ((!author.Name == '')) {
+            $scope.error = false;
+            $modalInstance.close(author);
+        } else {
+            $scope.error = true;
+        }
+    };
+    $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
+}

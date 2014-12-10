@@ -51,10 +51,13 @@
         </div>
     </header>
 
-    <div id="ui-view" class="container" ui-view data-tmpl-url="@Request.RequestContext.RouteData.DataTokens["templateUrl"]">
+    <div id="ui-view" class="container" ng- ui-view data-tmpl-url="@Request.RequestContext.RouteData.DataTokens["templateUrl"]">
         @RenderBody()
     </div>
-
+    
+    <div ng-show="isLoading" class="col-md-1 col-md-offset-4" style="padding-top: 15%">
+        <img class="img-circle" src="/Content/fonts/ProgressBar.GIF" alt="">
+    </div>
 
     @Scripts.Render("~/js/app")
 

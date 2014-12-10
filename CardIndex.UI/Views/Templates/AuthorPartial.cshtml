@@ -1,0 +1,24 @@
+﻿
+<div class="modal-header">
+    <h2 class="modal-title" align="center">
+        <span ng-if="author.Id==0">Add Author</span>
+        <span ng-if="author.Id!=0">Edit Author</span>
+    </h2>
+</div>
+
+<div class="modal-body">
+    <div class="col-md-12">
+        <label>Id:</label>
+        <strong>{{author.Id}} </strong>
+    </div>
+    <div class="col-md-12">
+        <label>Name:</label>
+        <input ng-model="author.Name" />
+    </div>
+</div>
+
+<div class="modal-footer">
+    <p class="text-danger" ng-if="error">Fill the fields</p>
+    <button class="btn btn-primary" ng-click="ok(author)">Ok</button>
+    <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+</div>

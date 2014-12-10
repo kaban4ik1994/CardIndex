@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using CardIndex.DBInteractions.Interface;
+using CardIndex.Data.DBInteractions.Interface;
+using CardIndex.Data.Repositories.Interface;
 using CardIndex.Entities;
-using CardIndex.Repositories.Interface;
 using CardIndex.Services.Interface;
 
 namespace CardIndex.Services.Concrete

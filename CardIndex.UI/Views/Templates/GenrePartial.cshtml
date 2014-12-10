@@ -1,0 +1,24 @@
+﻿
+<div class="modal-header">
+    <h2 class="modal-title" align="center">
+        <span ng-if="genre.Id==0">Add Genre</span>
+        <span ng-if="genre.Id!=0">Edit Genre</span>
+    </h2>
+</div>
+
+<div class="modal-body">
+        <div class="col-md-12">
+            <label>Id:</label>
+            <strong>{{genre.Id}} </strong>
+        </div>
+    <div class="col-md-12">
+        <label>Name:</label>
+        <input ng-model="genre.Name"/>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <p class="text-danger" ng-if="error">Fill the fields</p>
+    <button class="btn btn-primary" ng-click="ok(genre)">Ok</button>
+    <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+</div>

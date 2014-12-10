@@ -10,3 +10,5 @@ E:\Dev\Github\Github\CardIndex\CardIndex.Mappings\bin\Debug\AutoMapper.xml
 E:\Dev\Github\Github\CardIndex\CardIndex.Mappings\obj\Debug\CardIndex.Mappings.csprojResolveAssemblyReference.cache
 E:\Dev\Github\Github\CardIndex\CardIndex.Mappings\obj\Debug\CardIndex.Mappings.dll
 E:\Dev\Github\Github\CardIndex\CardIndex.Mappings\obj\Debug\CardIndex.Mappings.pdb
+E:\Dev\Github\Github\CardIndex\CardIndex.Mappings\bin\Debug\Newtonsoft.Json.dll
+E:\Dev\Github\Github\CardIndex\CardIndex.Mappings\bin\Debug\Newtonsoft.Json.xml

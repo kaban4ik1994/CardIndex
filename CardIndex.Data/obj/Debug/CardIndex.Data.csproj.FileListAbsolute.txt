@@ -1,0 +1,12 @@
+E:\Dev\Github\Github\CardIndex\CardIndex.Data\bin\Debug\CardIndex.Data.dll.config
+E:\Dev\Github\Github\CardIndex\CardIndex.Data\bin\Debug\CardIndex.Data.dll
+E:\Dev\Github\Github\CardIndex\CardIndex.Data\bin\Debug\CardIndex.Data.pdb
+E:\Dev\Github\Github\CardIndex\CardIndex.Data\bin\Debug\CardIndex.Entities.dll
+E:\Dev\Github\Github\CardIndex\CardIndex.Data\bin\Debug\EntityFramework.dll
+E:\Dev\Github\Github\CardIndex\CardIndex.Data\bin\Debug\EntityFramework.SqlServer.dll
+E:\Dev\Github\Github\CardIndex\CardIndex.Data\bin\Debug\CardIndex.Entities.pdb
+E:\Dev\Github\Github\CardIndex\CardIndex.Data\bin\Debug\EntityFramework.xml
+E:\Dev\Github\Github\CardIndex\CardIndex.Data\bin\Debug\EntityFramework.SqlServer.xml
+E:\Dev\Github\Github\CardIndex\CardIndex.Data\obj\Debug\CardIndex.Data.dll
+E:\Dev\Github\Github\CardIndex\CardIndex.Data\obj\Debug\CardIndex.Data.pdb
+E:\Dev\Github\Github\CardIndex\CardIndex.Data\obj\Debug\CardIndex.Data.csprojResolveAssemblyReference.cache

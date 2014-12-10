@@ -2,19 +2,27 @@
     PageData["title"] = "AngularJS SPA | Authors";
 }
 
-<table class="table table-hover" ng-hide="isLoading">
-    <tr>
-        <th>Id</th>
-        <th>Name</th>
-        <th></th>
-        <th></th>
-    </tr>
-    <tr ng-repeat="author in authors" class="at-repeat-fly-reverse-in
-         at-repeat-fly-reverse-out">
-        <td>{{author.Id}}</td>
-        <td>{{author.Name}}</td>
-        <td><button class="btn btn-warning" ng-click="open(bug)">Edit</button></td>
-        <td><button class="btn btn-danger" ng-click="delete(bug)">Delete</button></td>
-    </tr>
-</table>
+<div ng-hide="isLoading">
 
+    <div class="col-md-12">
+        <button class="btn btn-info" ng-click="authorDialog()">New Author</button>
+    </div>
+
+    <div class="col-md-12">
+        <table class="table table-hover">
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th></th>
+                <th></th>
+            </tr>
+            <tr ng-repeat="author in authors" class="at-repeat-fly-reverse-in
+         at-repeat-fly-reverse-out">
+                <td>{{author.Id}}</td>
+                <td>{{author.Name}}</td>
+                <td><button class="btn btn-warning" ng-click="authorDialog(author)">Edit</button></td>
+                <td><button class="btn btn-danger" ng-click="delete(author)">Delete</button></td>
+            </tr>
+        </table>
+    </div>
+</div>

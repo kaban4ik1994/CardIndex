@@ -37,7 +37,7 @@ namespace CardIndex.API.Controllers
         }
 
         [HttpPut]
-        public IHttpActionResult Put(Author author)
+        public IHttpActionResult Put([FromBody]Author author)
         {
             var dbAuthor = Mapper.Map<DbAuthor>(author);
             _authorService.UpdateAuthor(dbAuthor);
@@ -45,6 +45,14 @@ namespace CardIndex.API.Controllers
         }
 
         [HttpPost]
+        public IHttpActionResult Post([FromBody]Author author)
+        {
+            var dbAuthor = Mapper.Map<DbAuthor>(author);
+            _authorService.CreateAuthor(dbAuthor);
+            return Json(Mapper.Map<Author>(dbAuthor), new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
+        }
+
+        [HttpDelete]
         public IHttpActionResult Delete(long id)
         {
             _authorService.DeleteAuthor(id);

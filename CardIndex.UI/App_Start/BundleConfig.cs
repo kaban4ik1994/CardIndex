@@ -14,7 +14,9 @@ namespace App.CardIndex.UI
         // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
-            bundles.Add(new StyleBundle("~/content/css/app").Include("~/content/app.css"));
+            bundles.Add(new StyleBundle("~/content/css/app").Include(
+                "~/content/app.css",
+                "~/content/ng-grid.css"));
 
             bundles.Add(new ScriptBundle("~/js/jquery").Include("~/scripts/vendor/jquery-{version}.js"));
 
@@ -25,6 +27,8 @@ namespace App.CardIndex.UI
                 "~/scripts/vendor/angular-resource.js",
                 "~/scripts/vendor/angular-resource.js",
                 "~/scripts/vendor/angular-ui-router.js",
+                "~/scripts/vendor/lodash.min.js",
+                "~/scripts/vendor/ui-bootstrap-tpls.js",
                 "~/scripts/filters.js",
                 "~/scripts/services.js",
                 "~/scripts/directives.js",

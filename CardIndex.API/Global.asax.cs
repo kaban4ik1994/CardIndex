@@ -1,7 +1,8 @@
 ﻿using System.Data.Entity;
 using System.Web.Http;
+using System.Web.Mvc;
 using AutoMapper;
-using CardIndex.Context;
+using CardIndex.Data;
 using CardIndex.Mappings;
 
 namespace CardIndex.API
@@ -14,6 +15,7 @@ namespace CardIndex.API
             GlobalConfiguration.Configure(WebApiConfig.Register);
             InitilizeMapper();
             Database.SetInitializer(new CardIndexContextInitializer());
+            GlobalConfiguration.Configuration.Formatters.XmlFormatter.SupportedMediaTypes.Clear();
         }
 
         private static void InitilizeMapper()

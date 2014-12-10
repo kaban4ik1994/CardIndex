@@ -7,12 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardIndex.API", "CardIndex.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardIndex.Entities", "CardIndex.Entities\CardIndex.Entities.csproj", "{7E91A681-8612-4D5F-BCAE-C55DF038E384}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardIndex.Repositories", "CardIndex.Repositories\CardIndex.Repositories.csproj", "{C594E1A7-F1D3-4F50-968E-04E2F4212DA7}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardIndex.DBInteractions", "CardIndex.DBInteractions\CardIndex.DBInteractions.csproj", "{3467B9D5-84EC-4880-868C-22BEFFC98433}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardIndex.Context", "CardIndex.Context\CardIndex.Context.csproj", "{CF67CA3C-2B2B-408F-A5B9-A622638591CA}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardIndex.Models", "CardIndex.Models\CardIndex.Models.csproj", "{9C5D1166-43FC-4D1A-AC28-F11AB9B24D7D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardIndex.Mappings", "CardIndex.Mappings\CardIndex.Mappings.csproj", "{0EE60EB6-4C8F-475E-85A3-2BBD630B0D3F}"
@@ -22,6 +16,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardIndex.UI", "CardIndex.UI\CardIndex.UI.csproj", "{6EE9C788-58BD-452D-810B-31B9A4D9DB1E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardIndex.Helpers", "CardIndex.Helpers\CardIndex.Helpers.csproj", "{8B8B824E-EFB4-42F0-A58F-2DA3BD980715}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardIndex.Data", "CardIndex.Data\CardIndex.Data.csproj", "{C9C97FC1-9F34-4153-8DAE-5A53E458F7C9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,18 +33,6 @@ Global
 		{7E91A681-8612-4D5F-BCAE-C55DF038E384}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E91A681-8612-4D5F-BCAE-C55DF038E384}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7E91A681-8612-4D5F-BCAE-C55DF038E384}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C594E1A7-F1D3-4F50-968E-04E2F4212DA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C594E1A7-F1D3-4F50-968E-04E2F4212DA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C594E1A7-F1D3-4F50-968E-04E2F4212DA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C594E1A7-F1D3-4F50-968E-04E2F4212DA7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3467B9D5-84EC-4880-868C-22BEFFC98433}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3467B9D5-84EC-4880-868C-22BEFFC98433}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3467B9D5-84EC-4880-868C-22BEFFC98433}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3467B9D5-84EC-4880-868C-22BEFFC98433}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CF67CA3C-2B2B-408F-A5B9-A622638591CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CF67CA3C-2B2B-408F-A5B9-A622638591CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CF67CA3C-2B2B-408F-A5B9-A622638591CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CF67CA3C-2B2B-408F-A5B9-A622638591CA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9C5D1166-43FC-4D1A-AC28-F11AB9B24D7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9C5D1166-43FC-4D1A-AC28-F11AB9B24D7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9C5D1166-43FC-4D1A-AC28-F11AB9B24D7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -69,6 +53,10 @@ Global
 		{8B8B824E-EFB4-42F0-A58F-2DA3BD980715}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8B8B824E-EFB4-42F0-A58F-2DA3BD980715}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8B8B824E-EFB4-42F0-A58F-2DA3BD980715}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9C97FC1-9F34-4153-8DAE-5A53E458F7C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9C97FC1-9F34-4153-8DAE-5A53E458F7C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9C97FC1-9F34-4153-8DAE-5A53E458F7C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9C97FC1-9F34-4153-8DAE-5A53E458F7C9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

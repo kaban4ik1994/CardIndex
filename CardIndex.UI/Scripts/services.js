@@ -6,19 +6,31 @@ angular.module('app.services', ['ngResource'])
     .factory('BookApi', [
         '$resource', function ($resource) {
             return $resource('http://localhost:1605/api/book', null, {
-
+                responseType: "application/json"
             });
         }
     ])
     .factory('GenreApi', [
         '$resource', function ($resource) {
             return $resource('http://localhost:1605/api/genre', null, {
+                update: {
+                    method: 'PUT',
+                },
+                save: {
+                    method:'POST'
+                }
             });
         }
     ])
     .factory('AuthorApi', [
         '$resource', function ($resource) {
             return $resource('http://localhost:1605/api/author', null, {
+                update: {
+                    method: 'PUT',
+                },
+                save: {
+                    method: 'POST'
+                }
             });
         }
-]);
+    ]);

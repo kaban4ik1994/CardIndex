@@ -48,17 +48,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CardIndex.DBInteractions\CardIndex.DBInteractions.csproj">
-      <Project>{3467b9d5-84ec-4880-868c-22beffc98433}</Project>
-      <Name>CardIndex.DBInteractions</Name>
+    <ProjectReference Include="..\CardIndex.Data\CardIndex.Data.csproj">
+      <Project>{c9c97fc1-9f34-4153-8dae-5a53e458f7c9}</Project>
+      <Name>CardIndex.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\CardIndex.Entities\CardIndex.Entities.csproj">
       <Project>{7e91a681-8612-4d5f-bcae-c55df038e384}</Project>
       <Name>CardIndex.Entities</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CardIndex.Repositories\CardIndex.Repositories.csproj">
-      <Project>{c594e1a7-f1d3-4f50-968e-04e2f4212da7}</Project>
-      <Name>CardIndex.Repositories</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
