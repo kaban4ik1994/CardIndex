@@ -510,6 +510,7 @@
     <Content Include="Views\Authors.cshtml" />
     <Content Include="Views\Templates\GenrePartial.cshtml" />
     <Content Include="Views\Templates\AuthorPartial.cshtml" />
+    <Content Include="Views\Templates\ConfirmationPartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

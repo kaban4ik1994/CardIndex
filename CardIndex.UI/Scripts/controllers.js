@@ -54,10 +54,22 @@ angular.module('app.controllers', [])
             });
         };
 
-        //delete genre
-        $scope.delete = function (genre) {
-            genreApi.delete({ id: genre.Id });
-            _.remove($scope.genres, genre);
+        //confirmation modal dialog
+        $scope.confirmationDialog = function (data) {
+            var modalInstance = $modal.open({
+                templateUrl: '/views/templates/confirmationpartial',
+                controller: ConfirmationPartialCtrl,
+                resolve: {
+                    item: function () {
+                        return data;
+                    },
+                }
+            });
+            //delete genre
+            modalInstance.result.then(function (item) {
+                genreApi.delete({ id: item.Id });
+                _.remove($scope.genres, item);
+            });
         };
 
         $scope.$root.title = 'AngularJS SPA Template for Visual Studio';
@@ -75,7 +87,25 @@ angular.module('app.controllers', [])
             $scope.$root.isLoading = false;
         });
 
-        //modal dialog
+        //confirmation modal dialog
+        $scope.confirmationDialog = function (data) {
+            var modalInstance = $modal.open({
+                templateUrl: '/views/templates/confirmationpartial',
+                controller: ConfirmationPartialCtrl,
+                resolve: {
+                    item: function () {
+                        return data;
+                    },
+                }
+            });
+            //delete author
+            modalInstance.result.then(function (item) {
+                authorApi.delete({ id: item.Id });
+                _.remove($scope.authors, item);
+            });
+        };
+
+        //author modal dialog
         $scope.authorDialog = function (author) {
             var modalInstance = $modal.open({
                 templateUrl: '/views/templates/authorpartial',
@@ -103,12 +133,6 @@ angular.module('app.controllers', [])
                     authorApi.update({}, JSON.stringify(item));
                 }
             });
-        };
-
-        //delete genre
-        $scope.delete = function (author) {
-            authorApi.delete({ id: author.Id });
-            _.remove($scope.authors, author);
         };
 
         $scope.$root.title = 'AngularJS SPA Template for Visual Studio';
@@ -174,6 +198,16 @@ var AuthorPartialCtrl = function ($scope, $modalInstance, item) {
         }
     };
     $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
+};
+
+var ConfirmationPartialCtrl = function ($scope, $modalInstance, item) {
+    $scope.data = item;
+    $scope.yes = function (data) {
+        $modalInstance.close(data);
+    };
+    $scope.no = function () {
         $modalInstance.dismiss('cancel');
     };
 }
