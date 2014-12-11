@@ -7,9 +7,11 @@ namespace CardIndex.Entities
     [Table("GenreBooks")]
     public class DbBookDbGenre
     {
-        [Key, Column(Order = 0)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public long Id { get; set; }
+        [ForeignKey("Book")]
         public long BookId { get; set; }
-        [Key, Column(Order = 1)]
+        [ForeignKey("Genre")]
         public long GenreId { get; set; }
 
         public virtual DbBook Book { get; set; }

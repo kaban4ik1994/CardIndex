@@ -68,17 +68,6 @@ namespace CardIndex.Services.Concrete
 
         public void UpdateBook(DbBook book)
         {
-            
-            foreach (var author in book.Authors)
-            {
-                
-            }
-
-            foreach (var genre in book.Genres)
-            {
-                _bookGenreRepository.Attach(genre);
-            }
-
             _bookRepository.Update(book);
             _unitOfWork.Commit();
         }

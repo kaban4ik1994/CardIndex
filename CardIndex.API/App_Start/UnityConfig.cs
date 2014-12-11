@@ -21,20 +21,20 @@ namespace CardIndex.API
 
             // e.g. container.RegisterType<ITestService, TestService>();
             //Db interactions
-            container.RegisterType<IDbFactory, DbFactory>();
-            container.RegisterType<IUnitOfWork, UnitOfWork>();
+            container.RegisterType<IDbFactory, DbFactory>(new PerResolveLifetimeManager());
+            container.RegisterType<IUnitOfWork, UnitOfWork>(new PerResolveLifetimeManager());
 
             //Repositories
-            container.RegisterType<IGenreRepository, GenreRepository>();
-            container.RegisterType<IAuthorRepository, AuthorRepository>();
-            container.RegisterType<IBookRepository, BookRepository>();
-            container.RegisterType<IBookAuthorRepository, BookAuthorRepository>();
-            container.RegisterType<IBookGenreRepository, BookGenreRepository>();
+            container.RegisterType<IGenreRepository, GenreRepository>(new PerResolveLifetimeManager());
+            container.RegisterType<IAuthorRepository, AuthorRepository>(new PerResolveLifetimeManager());
+            container.RegisterType<IBookRepository, BookRepository>(new PerResolveLifetimeManager());
+            container.RegisterType<IBookAuthorRepository, BookAuthorRepository>(new PerResolveLifetimeManager());
+            container.RegisterType<IBookGenreRepository, BookGenreRepository>(new PerResolveLifetimeManager());
 
             //Services
-            container.RegisterType<IBookService, BookService>();
-            container.RegisterType<IAuthorService, AuthorService>();
-            container.RegisterType<IGenreService, GenreService>();
+            container.RegisterType<IBookService, BookService>(new PerResolveLifetimeManager());
+            container.RegisterType<IAuthorService, AuthorService>(new PerResolveLifetimeManager());
+            container.RegisterType<IGenreService, GenreService>(new PerResolveLifetimeManager());
 
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
         }
