@@ -1,48 +1,36 @@
 ﻿
 <div class="modal-header">
     <h2 class="modal-title" align="center">
-        <span ng-if="bug.Id==0">Add</span>
-        <span ng-if="bug.Id!=0">Edit</span>
+        <span ng-if="book.Id==0">Add Book</span>
+        <span ng-if="book.Id!=0">Edit Book</span>
     </h2>
 </div>
 
+
+
 <div class="modal-body">
-    <div class="row">
-        <div class="col-md-4 col-md-offset-3">
-            <div style="display:inline-block">
-                <datepicker ng-model="bug.Date" min-date="minDate" show-weeks="false" class="well well-sm"></datepicker>
-            </div>
-        </div>
+
+    <div ng-show="isDialogDataLoading.Authors||isDialogDataLoading.Genres">
+        <img class="img-circle" src="/Content/fonts/ProgressBar.GIF" alt="">
     </div>
-
-
-    <div class="row">
-        <div class="col-md-1 col-md-offset-3" style="font-size: 200%">
-            <strong> {{bug.Id}} </strong>
-        </div>
-        <div class="col-md-2">
-            <div class="btn-group" dropdown is-open="stat.isopen">
-                <button type="button" class="btn btn-danger dropdown-toggle  btn-lg" ng-disabled="disabled">
-                    {{bug.WhoReported}} <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" role="menu">
-                    <li ng-repeat="name in names"><a ng-click="bug.WhoReported=name;stat.isopen=false">{{name}}</a></li>
-
-                </ul>
+    <div ng-hide="isDialogDataLoading.Authors||isDialogDataLoading.Genres">
+        <div class="form-horizontal">
+            <div class="col-md-12">
+                <input class="form-control" placeholder="Name" ng-model="book.Name" />
             </div>
-        </div>
-
-        <div class="col-md-3 col-md-offset-1">
-            <div class="btn-group" dropdown is-open="stat.isopen1">
-                <button type="button" class="btn btn-danger dropdown-toggle  btn-lg" ng-disabled="disabled">
-                    {{bug.Status}} <span class="caret"></span>
-                </button>
-
-                <ul class="dropdown-menu" role="menu">
-
-                    <li ng-repeat="st in statuses"><a ng-click="bug.Status=st;stat.isopen1=false">{{st}}</a></li>
-
-                </ul>
+            <div class="col-md-12">
+                <input class="form-control" placeholder="Isbn" ng-model="book.Isbn" />
+            </div>
+            <div class="col-md-12">
+                <input class="form-control" placeholder="Etc" ng-model="book.Etc" />
+            </div>
+            <div class="form-inline">
+                <div class="col-md-6">
+                    <div ng-dropdown-multiselect="" options="AllAuthors" selected-model="book.Authors" extra-settings="AuthorDropDownSettings" translation-texts="AuthorCustomTexts"></div>
+                </div>
+                <div class="col-md-6">
+                    <div ng-dropdown-multiselect="" options="AllGenres" selected-model="book.Genres" extra-settings="GenreDropDownSettings" translation-texts="GenreCustomTexts"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -50,6 +38,6 @@
 
 <div class="modal-footer">
     <p class="text-danger" ng-if="error">Fill the fields</p>
-    <button class="btn btn-primary" ng-click="ok(bug)">OK</button>
+    <button class="btn btn-primary" ng-click="ok(book)">Ok</button>
     <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
 </div>

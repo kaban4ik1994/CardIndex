@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using AutoMapper;
@@ -37,19 +38,20 @@ namespace CardIndex.API.Controllers
         }
 
         [HttpPut]
-        public IHttpActionResult Put(Book book)
+        public IHttpActionResult Put([FromBody]Book book)
         {
             var dbBook = Mapper.Map<DbBook>(book);
             _bookService.UpdateBook(dbBook);
-            return Json(Mapper.Map<Genre>(dbBook), new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
+            return Json(Mapper.Map<Book>(dbBook), new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
         }
 
         [HttpPost]
-        public IHttpActionResult Post(Book book)
+        public IHttpActionResult Post([FromBody]Book book)
         {
             var dbBook = Mapper.Map<DbBook>(book);
+
             _bookService.CreateBook(dbBook);
-            return Json(Mapper.Map<Genre>(dbBook), new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
+            return Json(Mapper.Map<Book>(dbBook), new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
         }
 
         [HttpDelete]

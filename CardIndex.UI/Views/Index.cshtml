@@ -2,42 +2,52 @@
     PageData["title"] = "AngularJS SPA Template for Visual Studio";
 }
 <div ng-hide="isLoading">
-    <table class="table table-hover">
-        <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>ISBN</th>
-            <th>etc</th>
-            <th>
-                <div class="btn-group" dropdown is-open="status.isopen2">
-                    <button type="button" class="btn btn-primary dropdown-toggle" ng-disabled="disabled">
-                        Genres  <span class="caret"></span>
-                        <span ng-if="filterParams.sortDirection==true">(Ascending)</span>
-                        <span ng-if="filterParams.sortDirection==false">(Descending)</span>
-                        <span ng-if="filterParams.sortDirection==''"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a ng-click="chooseItem(filterParams.whoRep, filterParams.stat)">Empty</a></li>
-                        <li><a ng-click="chooseItem(filterParams.whoRep, filterParams.stat, 'Date', true)">Ascending</a></li>
-                        <li><a ng-click="chooseItem(filterParams.whoRep, filterParams.stat, 'Date', false)">Descending</a></li>
-                    </ul>
-                </div>
-            </th>
-            <th>Authors</th>
-            <th></th>
-            <th></th>
-        </tr>
-        <tr ng-repeat="book in books" class="at-repeat-fly-reverse-in
-         at-repeat-fly-reverse-out">
 
-            <td>{{book.Id}}</td>
-            <td>{{book.Name}}</td>
-            <td>{{book.Isbn}}</td>
-            <td>{{book.Etc}}</td>
-            <td>{{book.Genres}}</td>
-            <td>{{book.Authors}}</td>
-            <td><button class="btn btn-warning" ng-click="open(bug)">Edit</button></td>
-            <td><button class="btn btn-danger" ng-click="delete(bug)">Delete</button></td>
-        </tr>
-    </table>
+    <div class="col-md-12">
+        <button class="btn btn-info" ng-click="bookDialog()">New Book</button>
+    </div>
+
+    <div class="col-md-12">
+        <table class="table table-hover">
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>ISBN</th>
+                <th>etc</th>
+                <th>
+                    <div class="btn-group" dropdown is-open="status.isopen2">
+                        <button type="button" class="btn btn-primary dropdown-toggle" ng-disabled="disabled">
+                            Genres  <span class="caret"></span>
+                            <span ng-if="filterParams.sortDirection==true">(Ascending)</span>
+                            <span ng-if="filterParams.sortDirection==false">(Descending)</span>
+                            <span ng-if="filterParams.sortDirection==''"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a ng-click="chooseItem(filterParams.whoRep, filterParams.stat)">Empty</a></li>
+                            <li><a ng-click="chooseItem(filterParams.whoRep, filterParams.stat, 'Date', true)">Ascending</a></li>
+                            <li><a ng-click="chooseItem(filterParams.whoRep, filterParams.stat, 'Date', false)">Descending</a></li>
+                        </ul>
+                    </div>
+                </th>
+                <th>Authors</th>
+                <th></th>
+                <th></th>
+            </tr>
+            <tr ng-repeat="(bookIndex, book) in books">
+                <td>{{book.Id}}</td>
+                <td>{{book.Name}}</td>
+                <td>{{book.Isbn}}</td>
+                <td>{{book.Etc}}</td>
+                <td>
+                    <span ng-repeat="genre in books[bookIndex].Genres">{{genre.Id}}<br></span>
+                </td>
+                <td>
+                    <span ng-repeat="author in books[bookIndex].Authors">{{author.Name}}<br></span>
+                </td>
+
+                <td><button class="btn btn-warning" ng-click="bookDialog(book)">Edit</button></td>
+                <td><button class="btn btn-danger" ng-click="confirmationDialog(book)">Delete</button></td>
+            </tr>
+        </table>
+    </div>
 </div>

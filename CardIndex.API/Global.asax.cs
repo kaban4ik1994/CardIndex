@@ -22,9 +22,9 @@ namespace CardIndex.API
         {
             Mapper.Initialize(config =>
             {
-                config.AddProfile<BookMappingProfile>();
                 config.AddProfile<GenreMappingProfile>();
                 config.AddProfile<AuthorMappingProfile>();
+                config.AddProfile<BookMappingProfile>();
             });
             Mapper.AssertConfigurationIsValid();
         }

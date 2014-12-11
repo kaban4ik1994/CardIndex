@@ -6,7 +6,12 @@ angular.module('app.services', ['ngResource'])
     .factory('BookApi', [
         '$resource', function ($resource) {
             return $resource('http://localhost:1605/api/book', null, {
-                responseType: "application/json"
+                update: {
+                    method: 'PUT',
+                },
+                save: {
+                    method: 'POST'
+                }
             });
         }
     ])

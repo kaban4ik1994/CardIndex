@@ -3,6 +3,7 @@ using CardIndex.Data.DBInteractions.Interface;
 using CardIndex.Data.Repositories.Interface;
 using CardIndex.Entities;
 using CardIndex.Services.Interface;
+using System.Linq;
 
 namespace CardIndex.Services.Concrete
 {

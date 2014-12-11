@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.Data.Entity;
 using CardIndex.Data.DBInteractions.Interface;
 using CardIndex.Data.Repositories.Interface;
 using CardIndex.Entities;
 using CardIndex.Services.Interface;
+using System.Linq;
 
 namespace CardIndex.Services.Concrete
 {
@@ -19,7 +21,7 @@ namespace CardIndex.Services.Concrete
 
         public IEnumerable<DbBook> GetBooks()
         {
-            var books = _bookRepository.GetAll();
+            var books = _bookRepository.GetAll().Include(x=>x.Authors).Include(x=>x.Genres);
             return books;
         }
 
@@ -38,6 +40,7 @@ namespace CardIndex.Services.Concrete
         public void UpdateBook(DbBook book)
         {
             _bookRepository.Update(book);
+            
             _unitOfWork.Commit();
         }
 

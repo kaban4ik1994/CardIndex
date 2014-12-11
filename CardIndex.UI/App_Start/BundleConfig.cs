@@ -29,6 +29,7 @@ namespace App.CardIndex.UI
                 "~/scripts/vendor/angular-ui-router.js",
                 "~/scripts/vendor/lodash.min.js",
                 "~/scripts/vendor/ui-bootstrap-tpls.js",
+                "~/scripts/vendor/angularjs-dropdown-multiselect.js",
                 "~/scripts/filters.js",
                 "~/scripts/services.js",
                 "~/scripts/directives.js",

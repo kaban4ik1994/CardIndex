@@ -8,8 +8,31 @@ namespace CardIndex.Data
         public CardIndexContext()
             : base("CardIndexDBConnectionString")
         {
-            Configuration.LazyLoadingEnabled = false;
-            Configuration.ProxyCreationEnabled = false;
+        }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<DbBook>()
+                .HasMany(x => x.Authors)
+                .WithMany(x => x.Books)
+                .Map(configuration =>
+                {
+                    configuration.ToTable("DbBookDbAuthors");
+                    configuration.MapLeftKey("DbBook_Id");
+                    configuration.MapRightKey("DbAuthor_Id");
+                });
+
+            modelBuilder.Entity<DbBook>()
+                .HasMany(x => x.Genres)
+                .WithMany(x => x.Books)
+                .Map(configuration =>
+                {
+                    configuration.ToTable("DbGenreDbBooks");
+                    configuration.MapLeftKey("DbBook_Id");
+                    configuration.MapRightKey("DbGenre_Id");
+                });
+
+            base.OnModelCreating(modelBuilder);
         }
 
         public DbSet<DbBook> Books { get; set; }
