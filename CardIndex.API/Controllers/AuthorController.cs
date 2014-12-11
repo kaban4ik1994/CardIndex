@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using AutoMapper;
@@ -45,7 +44,7 @@ namespace CardIndex.API.Controllers
         {
             var dbAuthor = Mapper.Map<DbAuthor>(author);
             _authorService.UpdateAuthor(dbAuthor);
-            return Json(Mapper.Map<Author>(dbAuthor), new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
+            return Ok();
         }
 
         [HttpPost]
@@ -53,7 +52,7 @@ namespace CardIndex.API.Controllers
         {
             var dbAuthor = Mapper.Map<DbAuthor>(author);
             _authorService.CreateAuthor(dbAuthor);
-            return Json(Mapper.Map<Author>(dbAuthor), new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
+            return Json(new { AuthorId = dbAuthor.Id });
         }
 
         [HttpDelete]

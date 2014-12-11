@@ -29,11 +29,6 @@ angular.module('app', ['ui.bootstrap', 'angularjs-dropdown-multiselect', 'ui.rou
                 controller: 'AuthorCtrl'
 
             })
-            .state('about', {
-                url: '/about',
-                templateUrl: '/views/about',
-                controller: 'AboutCtrl'
-            })
             .state('login', {
                 url: '/login',
                 layout: 'basic',

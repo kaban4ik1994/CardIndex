@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using AutoMapper;
@@ -44,7 +43,7 @@ namespace CardIndex.API.Controllers
         {
             var dbGenre = Mapper.Map<DbGenre>(genre);
             _genreService.UpdateGenre(dbGenre);
-            return Json(Mapper.Map<Genre>(dbGenre), new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
+            return Ok();
         }
 
         [HttpPost]
@@ -52,7 +51,7 @@ namespace CardIndex.API.Controllers
         {
             var dbGenre = Mapper.Map<DbGenre>(genre);
             _genreService.CreateGenre(dbGenre);
-            return Json(Mapper.Map<Genre>(dbGenre), new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
+            return Json(new { GenreId = dbGenre.Id });
         }
 
         [HttpDelete]

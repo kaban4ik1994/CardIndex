@@ -39,15 +39,22 @@
                 <td>{{book.Isbn}}</td>
                 <td>{{book.Etc}}</td>
                 <td>
-                    <span ng-repeat="genre in books[bookIndex].Genres">{{genre.Id}}<br></span>
+                    <span ng-repeat="genre in books[bookIndex].Genres">
+                        <span ng-if="genre.Genre.Name">{{genre.Genre.Name}}<br /></span>
+                        <span ng-if="!genre.Genre.Name">{{genre.Name}}<br></span>
+                    </span>
                 </td>
                 <td>
-                    <span ng-repeat="author in books[bookIndex].Authors">{{author.Name}}<br></span>
+                    <span ng-repeat="author in books[bookIndex].Authors">
+                        <span ng-if="author.Author.Name">{{author.Author.Name}}<br /></span>
+                        <span ng-if="!author.Author.Name">{{author.Name}}<br></span>
+                    </span>
                 </td>
 
                 <td><button class="btn btn-warning" ng-click="bookDialog(book)">Edit</button></td>
                 <td><button class="btn btn-danger" ng-click="confirmationDialog(book)">Delete</button></td>
             </tr>
         </table>
+        <pagination total-items="totalItems" items-per-page="itemsPerPage" ng-model="currentPage" ng-change="pageChanged()"></pagination>
     </div>
 </div>

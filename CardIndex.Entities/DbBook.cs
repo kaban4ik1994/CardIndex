@@ -15,7 +15,7 @@ namespace CardIndex.Entities
         public string Isbn { get; set; }
         public string Etc { get; set; }
 
-        public virtual ICollection<DbGenre> Genres { get; set; }
-        public virtual ICollection<DbAuthor> Authors { get; set; }
+        public virtual ICollection<DbBookDbGenre> Genres { get; set; }
+        public virtual ICollection<DbBookDbAuthor> Authors { get; set; }
     }
 }

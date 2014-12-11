@@ -9,7 +9,7 @@ namespace CardIndex.Models
         public string Isbn { get; set; }
         public string Etc { get; set; }
 
-        public List<Genre> Genres { get; set; }
-        public List<Author> Authors { get; set; }
+        public List<BookGenre> Genres { get; set; }
+        public List<BookAuthor> Authors { get; set; }
     }
 }

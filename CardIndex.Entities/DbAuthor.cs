@@ -12,6 +12,6 @@ namespace CardIndex.Entities
         public long Id { get; set; }
         public string Name { get; set; }
 
-        public virtual ICollection<DbBook> Books { get; set; }
+        public virtual ICollection<DbBookDbAuthor> Books { get; set; }
     }
 }

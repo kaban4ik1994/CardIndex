@@ -12,7 +12,7 @@ namespace CardIndex.Entities
         public long Id { get; set; }
         public string Name { get; set; }
 
-        public virtual ICollection<DbBook> Books { get; set; }
+        public virtual ICollection<DbBookDbGenre> Books { get; set; }
  
     }
 }

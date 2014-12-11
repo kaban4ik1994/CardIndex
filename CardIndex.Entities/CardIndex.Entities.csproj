@@ -48,6 +48,8 @@
   <ItemGroup>
     <Compile Include="DbAuthor.cs" />
     <Compile Include="DbBook.cs" />
+    <Compile Include="DbBookDbAuthor.cs" />
+    <Compile Include="DbBookDbGenre.cs" />
     <Compile Include="DbGenre.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

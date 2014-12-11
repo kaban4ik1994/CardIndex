@@ -46,6 +46,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AuthorMappingProfile.cs" />
+    <Compile Include="BookAuthorMappingProfile.cs" />
+    <Compile Include="BookGenreMappingProfile.cs" />
     <Compile Include="BookMappingProfile.cs" />
     <Compile Include="GenreMappingProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

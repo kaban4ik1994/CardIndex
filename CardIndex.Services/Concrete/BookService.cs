@@ -21,7 +21,7 @@ namespace CardIndex.Services.Concrete
 
         public IEnumerable<DbBook> GetBooks()
         {
-            var books = _bookRepository.GetAll().Include(x=>x.Authors).Include(x=>x.Genres);
+            var books = _bookRepository.GetAll();
             return books;
         }
 
@@ -40,7 +40,6 @@ namespace CardIndex.Services.Concrete
         public void UpdateBook(DbBook book)
         {
             _bookRepository.Update(book);
-            
             _unitOfWork.Commit();
         }
 

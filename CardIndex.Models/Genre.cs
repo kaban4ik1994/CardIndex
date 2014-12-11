@@ -1,15 +1,12 @@
 ﻿using System.Collections.Generic;
-using Newtonsoft.Json;
 
 namespace CardIndex.Models
 {
     public class Genre
     {
-        [JsonProperty("Id")]
-        public long Id { get; set; }
-        [JsonProperty("Name")]
+        public long GenreId { get; set; }
         public string Name { get; set; }
-        [JsonProperty("Books")]
-        public ICollection<Book> Books { get; set; }
+
+        public List<BookGenre> Books { get; set; }
     }
 }

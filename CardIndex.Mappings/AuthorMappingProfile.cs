@@ -16,13 +16,15 @@ namespace CardIndex.Mappings
         private void MapDbAuthorToAuthor()
         {
             CreateMap<DbAuthor, Author>()
-                .ForMember(author => author.Books, expression => expression.MapFrom(author => author.Books));
+                .ForMember(author => author.Books, expression => expression.MapFrom(author => author.Books))
+                .ForMember(author => author.AuthorId, expression => expression.MapFrom(author => author.Id));
         }
 
         private void MapAuthorToDbAuthor()
         {
             CreateMap<Author, DbAuthor>()
-                .ForMember(author => author.Books, expression => expression.MapFrom(author => author.Books));
+                .ForMember(author => author.Books, expression => expression.MapFrom(author => author.Books))
+                .ForMember(author => author.Id, expression => expression.MapFrom(author => author.AuthorId));
         }
     }
 }

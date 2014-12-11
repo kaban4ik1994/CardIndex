@@ -6,6 +6,7 @@ namespace CardIndex.Data.DBInteractions.Interface
     public interface IEntityRepository<T> where T : class
     {
         void Add(T entity);
+        void Attach(T entity);
         void Update(T entity);
         void Delete(T delete);
         void Delete(Func<T, Boolean> predicate);

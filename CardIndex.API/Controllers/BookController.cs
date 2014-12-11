@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using AutoMapper;
 using CardIndex.Entities;
+using CardIndex.Helpers;
 using CardIndex.Models;
 using CardIndex.Services.Interface;
 using Newtonsoft.Json;
@@ -21,11 +21,13 @@ namespace CardIndex.API.Controllers
         }
 
         [HttpGet]
-        public IHttpActionResult Get()
+        public IHttpActionResult Get(int offset = 0, int limit = -1)
         {
-            var dbBooks = _bookService.GetBooks().ToList();
+            var count = _bookService.GetBooks().Count();
+            var itemsPerPage = limit == -1 ? ConfigHelper.ItemPerPage : limit;
+            var dbBooks = _bookService.GetBooks().Skip(offset < 0 ? 0 : offset).Take(itemsPerPage).ToList();
             var books = dbBooks.Select(Mapper.Map<Book>).ToList();
-            return Json(books, new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
+            return Json(new { books, count, itemsPerPage }, new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
         }
 
         [HttpGet]
@@ -42,16 +44,15 @@ namespace CardIndex.API.Controllers
         {
             var dbBook = Mapper.Map<DbBook>(book);
             _bookService.UpdateBook(dbBook);
-            return Json(Mapper.Map<Book>(dbBook), new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
+            return Ok();
         }
 
         [HttpPost]
         public IHttpActionResult Post([FromBody]Book book)
         {
             var dbBook = Mapper.Map<DbBook>(book);
-
             _bookService.CreateBook(dbBook);
-            return Json(Mapper.Map<Book>(dbBook), new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
+            return Json(new { dbBook.Id });
         }
 
         [HttpDelete]

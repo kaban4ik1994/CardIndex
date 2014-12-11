@@ -25,6 +25,8 @@ namespace CardIndex.API
                 config.AddProfile<GenreMappingProfile>();
                 config.AddProfile<AuthorMappingProfile>();
                 config.AddProfile<BookMappingProfile>();
+                config.AddProfile<BookAuthorMappingProfile>();
+                config.AddProfile<BookGenreMappingProfile>();
             });
             Mapper.AssertConfigurationIsValid();
         }
