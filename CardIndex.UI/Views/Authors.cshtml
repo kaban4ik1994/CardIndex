@@ -24,5 +24,6 @@
                 <td><button class="btn btn-danger" ng-click="confirmationDialog(author)">Delete</button></td>
             </tr>
         </table>
+        <pagination total-items="totalItems" items-per-page="itemsPerPage" ng-model="currentPage" ng-change="pageChanged()"></pagination>
     </div>
 </div>

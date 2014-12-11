@@ -92,3 +92,5 @@ E:\Dev\Github\Github\CardIndex\CardIndex.API\bin\System.Web.Razor.xml
 E:\Dev\Github\Github\CardIndex\CardIndex.API\bin\System.Web.WebPages.xml
 E:\Dev\Github\Github\CardIndex\CardIndex.API\bin\System.Web.WebPages.Deployment.xml
 E:\Dev\Github\Github\CardIndex\CardIndex.API\bin\System.Web.WebPages.Razor.xml
+E:\Dev\Github\Github\CardIndex\CardIndex.API\bin\CardIndex.Helpers.dll
+E:\Dev\Github\Github\CardIndex\CardIndex.API\bin\CardIndex.Helpers.pdb

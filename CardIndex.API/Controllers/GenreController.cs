@@ -1,17 +1,13 @@
-﻿using System.Collections;
+﻿using System;
 using System.Linq;
 using System.Web.Http;
 using System.Web.Http.Cors;
-using System.Web.Http.OData;
 using AutoMapper;
-using CardIndex.Data;
-using CardIndex.Data.DBInteractions.Concrete;
-using CardIndex.Data.Repositories.Interface;
 using CardIndex.Entities;
+using CardIndex.Helpers;
 using CardIndex.Models;
 using CardIndex.Services.Interface;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace CardIndex.API.Controllers
 {
@@ -19,20 +15,19 @@ namespace CardIndex.API.Controllers
     public class GenreController : ApiController
     {
         private readonly IGenreService _genreService;
-        private readonly IGenreRepository _genreRepository;
 
-        public GenreController(IGenreService genreService, IGenreRepository genreRepository)
+        public GenreController(IGenreService genreService)
         {
             _genreService = genreService;
-            _genreRepository = genreRepository;
         }
 
-        [Queryable]
-        public IQueryable<Genre> Get()
+        public IHttpActionResult Get(int offset = 0, int limit = -1)
         {
-            var dbGenres = _genreService.GetGenres().ToList();
-            var genres = dbGenres.Select(Mapper.Map<Genre>).AsQueryable();
-            return genres;
+            var count = _genreService.GetGenres().Count();
+            var itemsPerPage = limit == -1 ? ConfigHelper.ItemPerPage : limit;
+            var dbGenres = _genreService.GetGenres().Skip(offset < 0 ? 0 : offset).Take(itemsPerPage).ToList();
+            var genres = dbGenres.Select(Mapper.Map<Genre>).ToList();
+            return Json(new { genres, count, itemsPerPage }, new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
         }
 
         [HttpGet]

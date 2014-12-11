@@ -190,6 +190,10 @@
       <Project>{7e91a681-8612-4d5f-bcae-c55df038e384}</Project>
       <Name>CardIndex.Entities</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CardIndex.Helpers\CardIndex.Helpers.csproj">
+      <Project>{8b8b824e-efb4-42f0-a58f-2da3bd980715}</Project>
+      <Name>CardIndex.Helpers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CardIndex.Mappings\CardIndex.Mappings.csproj">
       <Project>{0ee60eb6-4c8f-475e-85a3-2bbd630b0d3f}</Project>
       <Name>CardIndex.Mappings</Name>

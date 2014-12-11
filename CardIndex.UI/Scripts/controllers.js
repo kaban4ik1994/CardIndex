@@ -82,7 +82,7 @@ angular.module('app.controllers', [])
     // Path: /Genres
     .controller('GenreCtrl', ['$scope', '$location', '$window', '$modal', 'GenreApi', function ($scope, $location, $window, $modal, genreApi) {
 
-        $scope.itemsPerPage = 5;
+        $scope.itemsPerPage = -1;
         $scope.currentPage = 1;
         $scope.$root.isLoading = true;
         //get genres
@@ -90,6 +90,7 @@ angular.module('app.controllers', [])
             $scope.$root.isLoading = false;
             $scope.genres = data.genres;
             $scope.totalItems = data.count;
+            $scope.itemsPerPage = data.itemsPerPage;
         });
 
         //pagination
@@ -104,6 +105,7 @@ angular.module('app.controllers', [])
                     $scope.isLoading = false;
                     $scope.genres = data.genres;
                     $scope.totalItems = data.count;
+                    $scope.itemsPerPage = data.itemsPerPage;
                 });
         };
 
@@ -170,7 +172,7 @@ angular.module('app.controllers', [])
      // Path: /Authors
     .controller('AuthorCtrl', ['$scope', '$location', '$window', '$modal', 'AuthorApi', function ($scope, $location, $window, $modal, authorApi) {
 
-        $scope.itemsPerPage = 5;
+        $scope.itemsPerPage = -1;
         $scope.currentPage = 1;
         $scope.$root.isLoading = true;
 
@@ -179,6 +181,7 @@ angular.module('app.controllers', [])
             $scope.$root.isLoading = false;
             $scope.authors = data.authors;
             $scope.totalItems = data.count;
+            $scope.itemsPerPage = data.itemsPerPage;
         });
 
         //pagination
@@ -193,6 +196,7 @@ angular.module('app.controllers', [])
                     $scope.isLoading = false;
                     $scope.authors = data.authors;
                     $scope.totalItems = data.count;
+                    $scope.itemsPerPage = data.itemsPerPage;
                 });
         };
 

@@ -1,8 +1,10 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using AutoMapper;
 using CardIndex.Entities;
+using CardIndex.Helpers;
 using CardIndex.Models;
 using CardIndex.Services.Interface;
 using Newtonsoft.Json;
@@ -20,11 +22,13 @@ namespace CardIndex.API.Controllers
         }
 
         [HttpGet]
-        public IHttpActionResult Get()
+        public IHttpActionResult Get(int offset = 0, int limit = -1)
         {
-            var dbAuthors = _authorService.GetAuthors().ToList();
+            var count = _authorService.GetAuthors().Count();
+            var itemsPerPage = limit == -1 ? ConfigHelper.ItemPerPage : limit;
+            var dbAuthors = _authorService.GetAuthors().Skip(offset < 0 ? 0 : offset).Take(itemsPerPage).ToList();
             var authors = dbAuthors.Select(Mapper.Map<Author>).ToList();
-            return Json(authors, new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
+            return Json(new { authors, count, itemsPerPage }, new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
         }
 
         [HttpGet]
