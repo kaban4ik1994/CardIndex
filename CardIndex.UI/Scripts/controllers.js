@@ -112,7 +112,9 @@ angular.module('app.controllers', [])
         };
 
         //filtering
-      //  $scope.filter = function ()
+        $scope.filter = function() {
+
+        };
 
         $scope.$root.title = 'AngularJS SPA Template for Visual Studio';
         $scope.$on('$viewContentLoaded', function () {

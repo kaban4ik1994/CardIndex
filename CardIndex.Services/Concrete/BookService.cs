@@ -10,11 +10,21 @@ namespace CardIndex.Services.Concrete
     public class BookService : IBookService
     {
         private readonly IBookRepository _bookRepository;
+        private readonly IBookAuthorRepository _bookAuthorRepository;
+        private readonly IBookGenreRepository _bookGenreRepository;
+        private readonly IAuthorRepository _authorRepository;
+        private readonly IGenreRepository _genreRepository;
         private readonly IUnitOfWork _unitOfWork;
 
-        public BookService(IBookRepository bookRepository, IUnitOfWork unitOfWork)
+        public BookService(IBookRepository bookRepository, IBookAuthorRepository bookAuthorRepository,
+            IBookGenreRepository bookGenreRepository, IAuthorRepository authorRepository,
+            IGenreRepository genreRepository, IUnitOfWork unitOfWork)
         {
             _bookRepository = bookRepository;
+            _bookAuthorRepository = bookAuthorRepository;
+            _bookGenreRepository = bookGenreRepository;
+            _authorRepository = authorRepository;
+            _genreRepository = genreRepository;
             _unitOfWork = unitOfWork;
         }
 
@@ -58,6 +68,17 @@ namespace CardIndex.Services.Concrete
 
         public void UpdateBook(DbBook book)
         {
+            
+            foreach (var author in book.Authors)
+            {
+                
+            }
+
+            foreach (var genre in book.Genres)
+            {
+                _bookGenreRepository.Attach(genre);
+            }
+
             _bookRepository.Update(book);
             _unitOfWork.Commit();
         }

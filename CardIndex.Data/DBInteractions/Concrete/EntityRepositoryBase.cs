@@ -29,13 +29,13 @@ namespace CardIndex.Data.DBInteractions.Concrete
         public virtual void Attach(T entity)
         {
             _dbSet.Attach(entity);
-            _dataContext.SaveChanges();
+          //  _dataContext.SaveChanges();
         }
 
         public virtual void Update(T entity)
         {
             _dbSet.AddOrUpdate(entity);
-            //_dataContext.Entry(entity).State = EntityState.Modified;
+            _dataContext.Entry(entity).State = EntityState.Modified;
             _dataContext.SaveChanges();
         }
 

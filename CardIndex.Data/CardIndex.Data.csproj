@@ -57,9 +57,13 @@
     <Compile Include="DBInteractions\Interface\IUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Concrete\AuthorRepository.cs" />
+    <Compile Include="Repositories\Concrete\BookAuthorRepository.cs" />
     <Compile Include="Repositories\Concrete\BookRepository.cs" />
     <Compile Include="Repositories\Concrete\GenreRepository.cs" />
+    <Compile Include="Repositories\Concrete\BookGenreRepository.cs" />
     <Compile Include="Repositories\Interface\IAuthorRepository.cs" />
+    <Compile Include="Repositories\Interface\IBookAuthorRepository.cs" />
+    <Compile Include="Repositories\Interface\IBookGenreRepository.cs" />
     <Compile Include="Repositories\Interface\IBookRepository.cs" />
     <Compile Include="Repositories\Interface\IGenreRepository.cs" />
   </ItemGroup>

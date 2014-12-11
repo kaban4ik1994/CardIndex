@@ -14,11 +14,11 @@ namespace CardIndex.API
     {
         public static void RegisterComponents()
         {
-			var container = new UnityContainer();
-            
+            var container = new UnityContainer();
+
             // register all your components with the container here
             // it is NOT necessary to register your controllers
-            
+
             // e.g. container.RegisterType<ITestService, TestService>();
             //Db interactions
             container.RegisterType<IDbFactory, DbFactory>();
@@ -28,12 +28,14 @@ namespace CardIndex.API
             container.RegisterType<IGenreRepository, GenreRepository>();
             container.RegisterType<IAuthorRepository, AuthorRepository>();
             container.RegisterType<IBookRepository, BookRepository>();
+            container.RegisterType<IBookAuthorRepository, BookAuthorRepository>();
+            container.RegisterType<IBookGenreRepository, BookGenreRepository>();
 
             //Services
             container.RegisterType<IBookService, BookService>();
             container.RegisterType<IAuthorService, AuthorService>();
             container.RegisterType<IGenreService, GenreService>();
-            
+
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
         }
     }
