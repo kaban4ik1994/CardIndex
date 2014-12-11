@@ -2,6 +2,7 @@
 using System.Web.Http;
 using System.Web.Http.Cors;
 using AutoMapper;
+using CardIndex.API.Models;
 using CardIndex.Entities;
 using CardIndex.Helpers;
 using CardIndex.Models;
@@ -21,11 +22,12 @@ namespace CardIndex.API.Controllers
         }
 
         [HttpGet]
-        public IHttpActionResult Get(int offset = 0, int limit = -1)
+        public IHttpActionResult Get(int offset = 0, int limit = -1, [FromUri]SortingOptions sortingOptions = null)
         {
-            var count = _bookService.GetBooks().Count();
+            sortingOptions = sortingOptions ?? new SortingOptions { SortColumn = -1, SortDirection = false };
+            var count = _bookService.GetCount();
             var itemsPerPage = limit == -1 ? ConfigHelper.ItemPerPage : limit;
-            var dbBooks = _bookService.GetBooks().Skip(offset < 0 ? 0 : offset).Take(itemsPerPage).ToList();
+            var dbBooks = _bookService.GetSortedBooks(sortingOptions.SortDirection, sortingOptions.SortColumn).Skip(offset < 0 ? 0 : offset).Take(itemsPerPage).ToList();
             var books = dbBooks.Select(Mapper.Map<Book>).ToList();
             return Json(new { books, count, itemsPerPage }, new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
         }

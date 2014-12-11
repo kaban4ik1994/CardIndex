@@ -22,7 +22,7 @@ namespace CardIndex.API.Controllers
 
         public IHttpActionResult Get(int offset = 0, int limit = -1)
         {
-            var count = _genreService.GetGenres().Count();
+            var count = _genreService.GetCount();
             var itemsPerPage = limit == -1 ? ConfigHelper.ItemPerPage : limit;
             var dbGenres = _genreService.GetGenres().Skip(offset < 0 ? 0 : offset).Take(itemsPerPage).ToList();
             var genres = dbGenres.Select(Mapper.Map<Genre>).ToList();

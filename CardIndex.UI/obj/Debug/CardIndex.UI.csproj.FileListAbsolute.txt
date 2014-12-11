@@ -37,5 +37,3 @@ E:\Dev\Github\Github\CardIndex\CardIndex.UI\bin\System.Web.WebPages.Razor.xml
 E:\Dev\Github\Github\CardIndex\CardIndex.UI\obj\Debug\CardIndex.UI.csprojResolveAssemblyReference.cache
 E:\Dev\Github\Github\CardIndex\CardIndex.UI\obj\Debug\App.CardIndex.UI.dll
 E:\Dev\Github\Github\CardIndex\CardIndex.UI\obj\Debug\App.CardIndex.UI.pdb
-E:\Dev\Github\Github\CardIndex\CardIndex.UI\bin\CardIndex.Helpers.dll
-E:\Dev\Github\Github\CardIndex\CardIndex.UI\bin\CardIndex.Helpers.pdb

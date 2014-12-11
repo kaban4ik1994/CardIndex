@@ -30,6 +30,11 @@ namespace CardIndex.Services.Concrete
             return genre;
         }
 
+        public long GetCount()
+        {
+            return _genreRepository.GetAll().Count();
+        }
+
         public void CreateGenre(DbGenre genre)
         {
             _genreRepository.Add(genre);

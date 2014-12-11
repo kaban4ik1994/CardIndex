@@ -10,26 +10,60 @@
     <div class="col-md-12">
         <table class="table table-hover">
             <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>ISBN</th>
-                <th>etc</th>
                 <th>
-                    <div class="btn-group" dropdown is-open="status.isopen2">
-                        <button type="button" class="btn btn-primary dropdown-toggle" ng-disabled="disabled">
-                            Genres  <span class="caret"></span>
-                            <span ng-if="filterParams.sortDirection==true">(Ascending)</span>
-                            <span ng-if="filterParams.sortDirection==false">(Descending)</span>
-                            <span ng-if="filterParams.sortDirection==''"></span>
-                        </button>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a ng-click="chooseItem(filterParams.whoRep, filterParams.stat)">Empty</a></li>
-                            <li><a ng-click="chooseItem(filterParams.whoRep, filterParams.stat, 'Date', true)">Ascending</a></li>
-                            <li><a ng-click="chooseItem(filterParams.whoRep, filterParams.stat, 'Date', false)">Descending</a></li>
-                        </ul>
-                    </div>
+                    <a id="link-1" href ng-click="sort(0)">
+                        Id
+                        <span ng-if="sortColumn==0">
+                            <span ng-if="!sortDirection" class="glyphicon glyphicon-arrow-up"></span>
+                            <span ng-if="sortDirection" class="glyphicon glyphicon-arrow-down"></span>
+                        </span>
+                    </a>
                 </th>
-                <th>Authors</th>
+                <th>
+                    <a id="link-1" href ng-click="sort(1)">
+                        Name
+                        <span ng-if="sortColumn==1">
+                            <span ng-if="!sortDirection" class="glyphicon glyphicon-arrow-up"></span>
+                            <span ng-if="sortDirection" class="glyphicon glyphicon-arrow-down"></span>
+                        </span>
+                    </a>
+                </th>
+                <th>
+                    <a id="link-1" href ng-click="sort(2)">
+                        ISBN
+                        <span ng-if="sortColumn==2">
+                            <span ng-if="!sortDirection" class="glyphicon glyphicon-arrow-up"></span>
+                            <span ng-if="sortDirection" class="glyphicon glyphicon-arrow-down"></span>
+                        </span>
+                    </a>
+                </th>
+                <th>
+                    <a id="link-1" href ng-click="sort(3)">
+                        etc
+                        <span ng-if="sortColumn==3">
+                            <span ng-if="!sortDirection" class="glyphicon glyphicon-arrow-up"></span>
+                            <span ng-if="sortDirection" class="glyphicon glyphicon-arrow-down"></span>
+                        </span>
+                    </a>
+                </th>
+                <th>
+                    <a id="link-1" href ng-click="sort(4)">
+                        Genres
+                        <span ng-if="sortColumn==4">
+                            <span ng-if="!sortDirection" class="glyphicon glyphicon-arrow-up"></span>
+                            <span ng-if="sortDirection" class="glyphicon glyphicon-arrow-down"></span>
+                        </span>
+                    </a>
+                </th>
+                <th>
+                    <a id="link-1" href ng-click="sort(5)">
+                        Authors
+                        <span ng-if="sortColumn==5">
+                            <span ng-if="!sortDirection" class="glyphicon glyphicon-arrow-up"></span>
+                            <span ng-if="sortDirection" class="glyphicon glyphicon-arrow-down"></span>
+                        </span>
+                    </a>
+                </th>
                 <th></th>
                 <th></th>
             </tr>

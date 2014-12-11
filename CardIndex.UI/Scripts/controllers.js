@@ -11,9 +11,11 @@ angular.module('app.controllers', [])
         $scope.itemsPerPage = -1;
         $scope.currentPage = 1;
         $scope.$root.isLoading = true;
+        $scope.sortColumn = -1;
+        $scope.sortDirection = false;
 
         //get books
-        bookApi.get({ offset: ($scope.currentPage - 1) * $scope.itemsPerPage, limit: $scope.itemsPerPage },
+        bookApi.get({ offset: ($scope.currentPage - 1) * $scope.itemsPerPage, limit: $scope.itemsPerPage, sortColumn: $scope.sortColumn, sortDirection: $scope.sortDirection },
                 function (data) {
                     $scope.$root.isLoading = false;
                     $scope.books = data.books;
@@ -87,7 +89,7 @@ angular.module('app.controllers', [])
 
         $scope.pageChanged = function () {
             $scope.isLoading = true;
-            bookApi.get({ offset: ($scope.currentPage - 1) * $scope.itemsPerPage, limit: $scope.itemsPerPage },
+            bookApi.get({ offset: ($scope.currentPage - 1) * $scope.itemsPerPage, limit: $scope.itemsPerPage, sortColumn: $scope.sortColumn, sortDirection: $scope.sortDirection },
                 function (data) {
                     $scope.isLoading = false;
                     $scope.books = data.books;
@@ -95,6 +97,22 @@ angular.module('app.controllers', [])
                     $scope.itemsPerPage = data.itemsPerPage;
                 });
         };
+
+        //sorting
+        $scope.sort = function (col) {
+            $scope.sortDirection = !$scope.sortDirection;
+            $scope.sortColumn = col;
+            bookApi.get({ offset: ($scope.currentPage - 1) * $scope.itemsPerPage, limit: $scope.itemsPerPage, sortColumn: $scope.sortColumn, sortDirection: $scope.sortDirection },
+                function (data) {
+                    $scope.isLoading = false;
+                    $scope.books = data.books;
+                    $scope.totalItems = data.count;
+                    $scope.itemsPerPage = data.itemsPerPage;
+                });
+        };
+
+        //filtering
+      //  $scope.filter = function ()
 
         $scope.$root.title = 'AngularJS SPA Template for Visual Studio';
         $scope.$on('$viewContentLoaded', function () {
@@ -274,6 +292,8 @@ angular.module('app.controllers', [])
                 }
             });
         };
+
+
 
         $scope.$root.title = 'AngularJS SPA Template for Visual Studio';
         $scope.$on('$viewContentLoaded', function () {

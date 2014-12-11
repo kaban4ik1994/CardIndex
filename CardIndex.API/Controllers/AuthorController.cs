@@ -23,7 +23,7 @@ namespace CardIndex.API.Controllers
         [HttpGet]
         public IHttpActionResult Get(int offset = 0, int limit = -1)
         {
-            var count = _authorService.GetAuthors().Count();
+            var count = _authorService.GetCount();
             var itemsPerPage = limit == -1 ? ConfigHelper.ItemPerPage : limit;
             var dbAuthors = _authorService.GetAuthors().Skip(offset < 0 ? 0 : offset).Take(itemsPerPage).ToList();
             var authors = dbAuthors.Select(Mapper.Map<Author>).ToList();

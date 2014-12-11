@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Data.Entity;
 using CardIndex.Data.DBInteractions.Interface;
 using CardIndex.Data.Repositories.Interface;
 using CardIndex.Entities;
@@ -29,6 +28,26 @@ namespace CardIndex.Services.Concrete
         {
             var book = _bookRepository.GetById(id);
             return book;
+        }
+
+        public long GetCount()
+        {
+            return _bookRepository.GetAll().Count();
+        }
+
+        public IEnumerable<DbBook> GetSortedBooks(bool sortDirection, int sortColumn)
+        {
+            var books = _bookRepository.GetAll();
+            switch (sortColumn)
+            {
+                case 0: books = sortDirection ? books.OrderBy(x => x.Id) : books.OrderByDescending(x => x.Id); break;
+                case 1: books = sortDirection ? books.OrderBy(x => x.Name) : books.OrderByDescending(x => x.Name); break;
+                case 2: books = sortDirection ? books.OrderBy(x => x.Isbn) : books.OrderByDescending(x => x.Isbn); break;
+                case 3: books = sortDirection ? books.OrderBy(x => x.Etc) : books.OrderByDescending(x => x.Etc); break;
+                case 4: break; //sort by authors
+                case 5: break; //sort by genres
+            }
+            return books;
         }
 
         public void CreateBook(DbBook book)

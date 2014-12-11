@@ -7,6 +7,7 @@ namespace CardIndex.Services.Interface
     {
         IEnumerable<DbAuthor> GetAuthors();
         DbAuthor GetAuthorById(long id);
+        long GetCount();
         void CreateAuthor(DbAuthor author);
         void UpdateAuthor(DbAuthor author);
         void DeleteAuthor(long id);
