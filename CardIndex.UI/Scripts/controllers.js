@@ -125,15 +125,14 @@ angular.module('app.controllers', [])
     // Path: /Genres
     .controller('GenreCtrl', ['$scope', '$location', '$window', '$modal', 'GenreApi', function ($scope, $location, $window, $modal, genreApi) {
 
-        $scope.itemsPerPage = -1;
+        $scope.itemsPerPage = 5;
         $scope.currentPage = 1;
         $scope.$root.isLoading = true;
         //get genres
-        genreApi.get({ offset: ($scope.currentPage - 1) * $scope.itemsPerPage, limit: $scope.itemsPerPage }, function (data) {
+        genreApi.get({ $count: true, $skip: ($scope.currentPage - 1) * $scope.itemsPerPage, $top: $scope.itemsPerPage }, function (data) {
             $scope.$root.isLoading = false;
-            $scope.genres = data.genres;
-            $scope.totalItems = data.count;
-            $scope.itemsPerPage = data.itemsPerPage;
+            $scope.genres = data.value;
+            $scope.totalItems = data["@odata.count"];
         });
 
         //pagination
@@ -142,14 +141,12 @@ angular.module('app.controllers', [])
         };
 
         $scope.pageChanged = function () {
-            $scope.isLoading = true;
-            genreApi.get({ offset: ($scope.currentPage - 1) * $scope.itemsPerPage, limit: $scope.itemsPerPage },
-                function (data) {
-                    $scope.isLoading = false;
-                    $scope.genres = data.genres;
-                    $scope.totalItems = data.count;
-                    $scope.itemsPerPage = data.itemsPerPage;
-                });
+            $scope.$root.isLoading = true;
+            genreApi.get({ $count: true, $skip: ($scope.currentPage - 1) * $scope.itemsPerPage, $top: $scope.itemsPerPage }, function (data) {
+                $scope.$root.isLoading = false;
+                $scope.genres = data.value;
+                $scope.totalItems = data["@odata.count"];
+            });
         };
 
         //modal dialog
@@ -160,7 +157,7 @@ angular.module('app.controllers', [])
                 resolve: {
                     item: function () {
                         if (!genre) {
-                            genre = { GenreId: 0, Name: '' };
+                            genre = { Id: 0, Name: '' };
                         };
                         return genre;
                     },
@@ -169,11 +166,10 @@ angular.module('app.controllers', [])
 
             modalInstance.result.then(function (item) {
                 //if new item
-                if (item.GenreId == 0) {
-                    genreApi.save({}, JSON.stringify(item), function (data) {
-
+                if (item.Id == 0) {
+                    genreApi.save({}, angular.toJson(item), function (data) {
                         if ($scope.genres.length < $scope.itemsPerPage) {
-                            item.GenreId = data.GenreId;
+                            item.Id = data.Id;
                             $scope.genres.push(item);
                         }
                         $scope.totalItems++;
@@ -181,7 +177,7 @@ angular.module('app.controllers', [])
                 }
                     //else update item
                 else {
-                    genreApi.update({}, JSON.stringify(item));
+                    genreApi.update({ key: item.Id }, angular.toJson(item));
                 }
             });
         };
@@ -199,7 +195,7 @@ angular.module('app.controllers', [])
             });
             //delete genre
             modalInstance.result.then(function (item) {
-                genreApi.delete({ id: item.GenreId });
+                genreApi.delete({ key: item.Id });
                 $scope.totalItems--;
                 _.remove($scope.genres, item);
             });

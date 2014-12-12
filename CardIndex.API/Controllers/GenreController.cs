@@ -1,17 +1,15 @@
 ﻿using System.Linq;
 using System.Web.Http;
 using System.Web.Http.Cors;
-using AutoMapper;
+using System.Web.OData;
+using System.Web.OData.Query;
 using CardIndex.Entities;
-using CardIndex.Helpers;
-using CardIndex.Models;
 using CardIndex.Services.Interface;
-using Newtonsoft.Json;
 
 namespace CardIndex.API.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
-    public class GenreController : ApiController
+    public class GenreController : ODataController
     {
         private readonly IGenreService _genreService;
 
@@ -20,44 +18,36 @@ namespace CardIndex.API.Controllers
             _genreService = genreService;
         }
 
-        public IHttpActionResult Get(int offset = 0, int limit = -1)
+        [EnableQuery(AllowedQueryOptions = AllowedQueryOptions.All)]
+        public IHttpActionResult Get()
         {
-            var count = _genreService.GetCount();
-            var itemsPerPage = limit == -1 ? ConfigHelper.ItemPerPage : limit;
-            var dbGenres = _genreService.GetGenres().Skip(offset < 0 ? 0 : offset).Take(itemsPerPage).ToList();
-            var genres = dbGenres.Select(Mapper.Map<Genre>).ToList();
-            return Json(new { genres, count, itemsPerPage }, new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
+            var genres = _genreService.GetGenres().AsQueryable();
+            return Ok(genres);
         }
 
-        [HttpGet]
-        public IHttpActionResult Get(long id)
+        public IHttpActionResult Put([FromODataUri]int key, [FromBody]DbGenre genre)
         {
-            var dbGenre = _genreService.GetGenreById(id);
-            if (dbGenre == null) return BadRequest("Genre not found!");
-            var genre = Mapper.Map<Genre>(dbGenre);
-            return Json(genre, new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            _genreService.UpdateGenre(genre);
+            return Updated(genre);
         }
 
-        [HttpPut]
-        public IHttpActionResult Put([FromBody]Genre genre)
+        public IHttpActionResult Post([FromBody]DbGenre genre)
         {
-            var dbGenre = Mapper.Map<DbGenre>(genre);
-            _genreService.UpdateGenre(dbGenre);
-            return Ok();
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            _genreService.CreateGenre(genre);
+            return Created(genre);
         }
 
-        [HttpPost]
-        public IHttpActionResult Post([FromBody]Genre genre)
+        public IHttpActionResult Delete([FromODataUri]int key)
         {
-            var dbGenre = Mapper.Map<DbGenre>(genre);
-            _genreService.CreateGenre(dbGenre);
-            return Json(new { GenreId = dbGenre.Id });
-        }
-
-        [HttpDelete]
-        public IHttpActionResult Delete(long id)
-        {
-            _genreService.DeleteGenre(id);
+            _genreService.DeleteGenre(key);
             return Ok();
         }
     }
