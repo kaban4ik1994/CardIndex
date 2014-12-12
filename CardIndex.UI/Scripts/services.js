@@ -5,7 +5,7 @@
 angular.module('app.services', ['ngResource'])
     .factory('BookApi', [
         '$resource', function ($resource) {
-            return $resource('http://localhost:1605/api/book', null, {
+            return $resource('http://localhost:1605/odata/Book(:key)', { key: '@id' }, {
                 update: {
                     method: 'PUT',
                 },

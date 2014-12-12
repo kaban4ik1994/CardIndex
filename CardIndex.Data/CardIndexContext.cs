@@ -8,8 +8,8 @@ namespace CardIndex.Data
         public CardIndexContext()
             : base("CardIndexDBConnectionString")
         {
-            Configuration.LazyLoadingEnabled = false;
-            Configuration.ProxyCreationEnabled = false;
+        //    Configuration.LazyLoadingEnabled = false;
+       //     Configuration.ProxyCreationEnabled = false;
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

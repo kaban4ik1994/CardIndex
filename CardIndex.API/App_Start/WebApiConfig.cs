@@ -14,11 +14,15 @@ namespace CardIndex.API
             config.MapHttpAttributeRoutes();
 
             ODataModelBuilder builder = new ODataConventionModelBuilder();
-            builder.EntitySet<DbBook>("Book");
+            var bookEntitySet= builder.EntitySet<DbBook>("Book");
+            bookEntitySet.EntityType.ContainsMany(x => x.Authors);
             builder.EntitySet<DbAuthor>("Author");
             builder.EntitySet<DbGenre>("Genre");
             builder.EntitySet<DbBookDbAuthor>("BookAuthor");
             builder.EntitySet<DbBookDbGenre>("BookGenre");
+
+            var bookType = builder.EntityType<DbBook>();
+      
 
             var model= builder.GetEdmModel();
 

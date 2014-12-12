@@ -8,19 +8,18 @@ angular.module('app.controllers', [])
     // Path: /
     .controller('HomeCtrl', ['$scope', '$location', '$window', '$modal', 'BookApi', 'GenreApi', 'AuthorApi', function ($scope, $location, $window, $modal, bookApi, genreApi, authorApi) {
 
-        $scope.itemsPerPage = -1;
+        $scope.itemsPerPage = 5;
         $scope.currentPage = 1;
         $scope.$root.isLoading = true;
         $scope.sortColumn = -1;
         $scope.sortDirection = false;
 
         //get books
-        bookApi.get({ offset: ($scope.currentPage - 1) * $scope.itemsPerPage, limit: $scope.itemsPerPage, sortColumn: $scope.sortColumn, sortDirection: $scope.sortDirection },
+        bookApi.get({ $count: true, $skip: ($scope.currentPage - 1) * $scope.itemsPerPage, $top: $scope.itemsPerPage },
                 function (data) {
                     $scope.$root.isLoading = false;
-                    $scope.books = data.books;
-                    $scope.totalItems = data.count;
-                    $scope.itemsPerPage = data.itemsPerPage;
+                    $scope.books = data.value;
+                    $scope.totalItems = data["@odata.count"];
                 });
 
         //modal dialog
@@ -45,10 +44,8 @@ angular.module('app.controllers', [])
 
             modalInstance.result.then(function (item) {
                 //if new item
-                console.log($scope.books[0]);
-                console.log(item);
                 if (item.Id == 0) {
-                    bookApi.save({}, JSON.stringify(item), function (resultData) {
+                    bookApi.save({}, angular.toJson(item), function (resultData) {
                         if ($scope.books.length < $scope.itemsPerPage) {
                             item.Id = resultData.Id;
                             $scope.books.push(item);
@@ -58,7 +55,7 @@ angular.module('app.controllers', [])
                 }
                     //else update item
                 else {
-                    bookApi.update({}, JSON.stringify(item));
+                    bookApi.update({ key: item.Id }, angular.toJson(item));
                 }
             });
         };
@@ -76,7 +73,7 @@ angular.module('app.controllers', [])
             });
             //delete book
             modalInstance.result.then(function (item) {
-                bookApi.delete({ id: item.Id });
+                bookApi.delete({key:item.Id });
                 _.remove($scope.books, item);
                 $scope.totalItems--;
             });
@@ -88,13 +85,12 @@ angular.module('app.controllers', [])
         };
 
         $scope.pageChanged = function () {
-            $scope.isLoading = true;
-            bookApi.get({ offset: ($scope.currentPage - 1) * $scope.itemsPerPage, limit: $scope.itemsPerPage, sortColumn: $scope.sortColumn, sortDirection: $scope.sortDirection },
+            $scope.$root.isLoading = true;
+            bookApi.get({ $count: true, $skip: ($scope.currentPage - 1) * $scope.itemsPerPage, $top: $scope.itemsPerPage },
                 function (data) {
-                    $scope.isLoading = false;
-                    $scope.books = data.books;
-                    $scope.totalItems = data.count;
-                    $scope.itemsPerPage = data.itemsPerPage;
+                    $scope.$root.isLoading = false;
+                    $scope.books = data.value;
+                    $scope.totalItems = data["@odata.count"];
                 });
         };
 
@@ -328,16 +324,16 @@ var BookPartialCtrl = function ($scope, $modalInstance, item) {
 
     item.AuthorApi.get({}, function (data) {
         $scope.isDialogDataLoading.Authors = false;
-        $scope.AllAuthors = data.authors;
+        $scope.AllAuthors = data.value;
     });
 
     item.GenreApi.get({}, function (data) {
         $scope.isDialogDataLoading.Genres = false;
-        $scope.AllGenres = data.genres;
+        $scope.AllGenres = data.value;
     });
 
-    $scope.AuthorDropDownSettings = { displayProp: 'Name', idProp: 'AuthorId', externalIdProp: '' };
-    $scope.GenreDropDownSettings = { displayProp: 'Name', idProp: 'GenreId', externalIdProp: '' };
+    $scope.AuthorDropDownSettings = { displayProp: 'Name', idProp: 'Id', externalIdProp: 'AuthorId' };
+    $scope.GenreDropDownSettings = { displayProp: 'Name', idProp: 'Id', externalIdProp: 'GenreId' };
 
     $scope.ok = function (book) {
         if ((!book.Name == '') && (!book.Isbn == '') && (!book.Etc == '')) {
