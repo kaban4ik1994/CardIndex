@@ -112,7 +112,7 @@ angular.module('app.controllers', [])
         };
 
         //filtering
-        $scope.filter = function() {
+        $scope.filter = function () {
 
         };
 
@@ -214,16 +214,15 @@ angular.module('app.controllers', [])
      // Path: /Authors
     .controller('AuthorCtrl', ['$scope', '$location', '$window', '$modal', 'AuthorApi', function ($scope, $location, $window, $modal, authorApi) {
 
-        $scope.itemsPerPage = -1;
+        $scope.itemsPerPage = 5;
         $scope.currentPage = 1;
         $scope.$root.isLoading = true;
 
         //get authors 
-        authorApi.get({ offset: ($scope.currentPage - 1) * $scope.itemsPerPage, limit: $scope.itemsPerPage }, function (data) {
+        authorApi.get({ $count: true, $skip: ($scope.currentPage - 1) * $scope.itemsPerPage, $top: $scope.itemsPerPage }, function (data) {
             $scope.$root.isLoading = false;
-            $scope.authors = data.authors;
-            $scope.totalItems = data.count;
-            $scope.itemsPerPage = data.itemsPerPage;
+            $scope.authors = data.value;
+            $scope.totalItems = data["@odata.count"];
         });
 
         //pagination
@@ -232,14 +231,12 @@ angular.module('app.controllers', [])
         };
 
         $scope.pageChanged = function () {
-            $scope.isLoading = true;
-            authorApi.get({ offset: ($scope.currentPage - 1) * $scope.itemsPerPage, limit: $scope.itemsPerPage },
-                function (data) {
-                    $scope.isLoading = false;
-                    $scope.authors = data.authors;
-                    $scope.totalItems = data.count;
-                    $scope.itemsPerPage = data.itemsPerPage;
-                });
+            $scope.$root.isLoading = true;
+            authorApi.get({ $count: true, $skip: ($scope.currentPage - 1) * $scope.itemsPerPage, $top: $scope.itemsPerPage }, function (data) {
+                $scope.$root.isLoading = false;
+                $scope.authors = data["value"];
+                $scope.totalItems = data["@odata.count"];
+            });
         };
 
 
@@ -256,7 +253,7 @@ angular.module('app.controllers', [])
             });
             //delete author
             modalInstance.result.then(function (item) {
-                authorApi.delete({ id: item.AuthorId });
+                authorApi.delete({ key: item.Id });
                 _.remove($scope.authors, item);
                 $scope.totalItems--;
             });
@@ -270,7 +267,7 @@ angular.module('app.controllers', [])
                 resolve: {
                     item: function () {
                         if (!author) {
-                            author = { AuthorId: 0, Name: '' };
+                            author = { Id: 0, Name: '' };
                         };
                         return author;
                     },
@@ -279,10 +276,10 @@ angular.module('app.controllers', [])
 
             modalInstance.result.then(function (item) {
                 //if new item
-                if (item.AuthorId == 0) {
-                    authorApi.save({}, JSON.stringify(item), function (data) {
+                if (item.Id == 0) {
+                    authorApi.save({}, angular.toJson(item), function (data) {
                         if ($scope.authors.length < $scope.itemsPerPage) {
-                            item.AuthorId = data.AuthorId;
+                            item.Id = data.Id;
                             $scope.authors.push(item);
                         }
                         $scope.totalItems++;
@@ -290,7 +287,7 @@ angular.module('app.controllers', [])
                 }
                     //else update item
                 else {
-                    authorApi.update({}, JSON.stringify(item));
+                    authorApi.update({ key: item.Id }, angular.toJson(item));
                 }
             });
         };

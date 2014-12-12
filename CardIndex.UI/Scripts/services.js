@@ -4,7 +4,7 @@
 // In this case it is a simple value service.
 angular.module('app.services', ['ngResource'])
     .factory('BookApi', [
-        '$resource', function ($resource) {
+        '$resource', function($resource) {
             return $resource('http://localhost:1605/api/book', null, {
                 update: {
                     method: 'PUT',
@@ -16,22 +16,23 @@ angular.module('app.services', ['ngResource'])
         }
     ])
     .factory('GenreApi', [
-        '$resource', function ($resource) {
+        '$resource', function($resource) {
             return $resource('http://localhost:1605/api/genre', null, {
                 update: {
                     method: 'PUT',
                 },
                 save: {
-                    method:'POST'
+                    method: 'POST'
                 }
             });
         }
     ])
     .factory('AuthorApi', [
-        '$resource', function ($resource) {
-            return $resource('http://localhost:1605/api/author', null, {
+        '$resource', function($resource) {
+            return $resource('http://localhost:1605/odata/Author(:key)', { key: '@id' }, {
                 update: {
                     method: 'PUT',
+                    
                 },
                 save: {
                     method: 'POST'

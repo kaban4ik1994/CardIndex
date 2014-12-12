@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using CardIndex.Entities;
+using CardIndex.Models;
 
 namespace CardIndex.Services.Interface
 {

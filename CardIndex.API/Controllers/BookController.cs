@@ -1,8 +1,8 @@
 ﻿using System.Linq;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using System.Web.OData;
 using AutoMapper;
-using CardIndex.API.Models;
 using CardIndex.Entities;
 using CardIndex.Helpers;
 using CardIndex.Models;
@@ -12,22 +12,27 @@ using Newtonsoft.Json;
 namespace CardIndex.API.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
-    public class BookController : ApiController
+    public class BookController : ODataController
     {
         private readonly IBookService _bookService;
+        private readonly IGenreService _genreService;
+        private readonly IAuthorService _authorService;
+        private readonly long _pageSize;
 
-        public BookController(IBookService bookService)
+        public BookController(IBookService bookService, IGenreService genreService, IAuthorService authorService)
         {
             _bookService = bookService;
+            _genreService = genreService;
+            _authorService = authorService;
+            _pageSize = ConfigHelper.ItemPerPage;
         }
 
-        [HttpGet]
-        public IHttpActionResult Get(int offset = 0, int limit = -1, [FromUri]SortingOptions sortingOptions = null)
+      //  [EnableQuery(PageSize = 2)]
+        public IHttpActionResult Get(int offset = 0, int limit = -1)
         {
-            sortingOptions = sortingOptions ?? new SortingOptions { SortColumn = -1, SortDirection = false };
             var count = _bookService.GetCount();
             var itemsPerPage = limit == -1 ? ConfigHelper.ItemPerPage : limit;
-            var dbBooks = _bookService.GetSortedBooks(sortingOptions.SortDirection, sortingOptions.SortColumn).Skip(offset < 0 ? 0 : offset).Take(itemsPerPage).ToList();
+            var dbBooks = _bookService.GetBooks().Skip(offset < 0 ? 0 : offset).Take(itemsPerPage).ToList();
             var books = dbBooks.Select(Mapper.Map<Book>).ToList();
             return Json(new { books, count, itemsPerPage }, new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
         }

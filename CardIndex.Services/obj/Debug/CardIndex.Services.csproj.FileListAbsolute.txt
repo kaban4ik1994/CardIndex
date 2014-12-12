@@ -12,3 +12,7 @@ E:\Dev\Github\Github\CardIndex\CardIndex.Services\bin\Debug\CardIndex.Data.pdb
 E:\Dev\Github\Github\CardIndex\CardIndex.Services\bin\Debug\CardIndex.Services.dll.config
 E:\Dev\Github\Github\CardIndex\CardIndex.Services\bin\Debug\EntityFramework.SqlServer.dll
 E:\Dev\Github\Github\CardIndex\CardIndex.Services\bin\Debug\EntityFramework.SqlServer.xml
+E:\Dev\Github\Github\CardIndex\CardIndex.Services\bin\Debug\AutoMapper.dll
+E:\Dev\Github\Github\CardIndex\CardIndex.Services\bin\Debug\CardIndex.Models.dll
+E:\Dev\Github\Github\CardIndex\CardIndex.Services\bin\Debug\CardIndex.Models.pdb
+E:\Dev\Github\Github\CardIndex\CardIndex.Services\bin\Debug\AutoMapper.xml
