@@ -4,8 +4,6 @@ E:\Dev\Github\Github\CardIndex\CardIndex.API\bin\CardIndex.API.dll
 E:\Dev\Github\Github\CardIndex\CardIndex.API\bin\CardIndex.API.pdb
 E:\Dev\Github\Github\CardIndex\CardIndex.API\bin\AutoMapper.dll
 E:\Dev\Github\Github\CardIndex\CardIndex.API\bin\CardIndex.Entities.dll
-E:\Dev\Github\Github\CardIndex\CardIndex.API\bin\CardIndex.Mappings.dll
-E:\Dev\Github\Github\CardIndex\CardIndex.API\bin\CardIndex.Models.dll
 E:\Dev\Github\Github\CardIndex\CardIndex.API\bin\CardIndex.Services.dll
 E:\Dev\Github\Github\CardIndex\CardIndex.API\bin\EntityFramework.dll
 E:\Dev\Github\Github\CardIndex\CardIndex.API\bin\EntityFramework.SqlServer.dll
@@ -14,8 +12,6 @@ E:\Dev\Github\Github\CardIndex\CardIndex.API\bin\System.Net.Http.Formatting.dll
 E:\Dev\Github\Github\CardIndex\CardIndex.API\bin\System.Web.Http.dll
 E:\Dev\Github\Github\CardIndex\CardIndex.API\bin\System.Web.Http.WebHost.dll
 E:\Dev\Github\Github\CardIndex\CardIndex.API\bin\CardIndex.Entities.pdb
-E:\Dev\Github\Github\CardIndex\CardIndex.API\bin\CardIndex.Mappings.pdb
-E:\Dev\Github\Github\CardIndex\CardIndex.API\bin\CardIndex.Models.pdb
 E:\Dev\Github\Github\CardIndex\CardIndex.API\bin\CardIndex.Services.pdb
 E:\Dev\Github\Github\CardIndex\CardIndex.API\bin\AutoMapper.xml
 E:\Dev\Github\Github\CardIndex\CardIndex.API\bin\EntityFramework.xml

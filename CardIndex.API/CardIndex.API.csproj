@@ -199,14 +199,6 @@
       <Project>{8b8b824e-efb4-42f0-a58f-2da3bd980715}</Project>
       <Name>CardIndex.Helpers</Name>
     </ProjectReference>
-    <ProjectReference Include="..\CardIndex.Mappings\CardIndex.Mappings.csproj">
-      <Project>{0ee60eb6-4c8f-475e-85a3-2bbd630b0d3f}</Project>
-      <Name>CardIndex.Mappings</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CardIndex.Models\CardIndex.Models.csproj">
-      <Project>{9c5d1166-43fc-4d1a-ac28-f11ab9b24d7d}</Project>
-      <Name>CardIndex.Models</Name>
-    </ProjectReference>
     <ProjectReference Include="..\CardIndex.Services\CardIndex.Services.csproj">
       <Project>{4aa60940-11dc-485f-985a-a54b9295a9c4}</Project>
       <Name>CardIndex.Services</Name>

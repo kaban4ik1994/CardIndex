@@ -7,8 +7,6 @@ namespace CardIndex.Services.Interface
     {
         IEnumerable<DbBook> GetBooks();
         DbBook GetBookById(long id);
-        long GetCount();
-        IEnumerable<DbBook> GetSortedBooks(bool sortDirection, int sortColumn);
         void CreateBook(DbBook book);
         void UpdateBook(DbBook book);
         void DeleteBook(long id);

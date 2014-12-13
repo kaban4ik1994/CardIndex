@@ -1,11 +1,8 @@
-﻿using System.Linq;
-using System.Web.Http;
+﻿using System.Web.Http;
 using System.Web.Http.Cors;
 using System.Web.OData;
 using System.Web.OData.Query;
-using AutoMapper;
 using CardIndex.Entities;
-using CardIndex.Models;
 using CardIndex.Services.Interface;
 using Microsoft.Practices.ObjectBuilder2;
 
@@ -15,14 +12,10 @@ namespace CardIndex.API.Controllers
     public class BookController : ODataController
     {
         private readonly IBookService _bookService;
-        private readonly IGenreService _genreService;
-        private readonly IAuthorService _authorService;
 
-        public BookController(IBookService bookService, IGenreService genreService, IAuthorService authorService)
+        public BookController(IBookService bookService)
         {
             _bookService = bookService;
-            _genreService = genreService;
-            _authorService = authorService;
         }
 
         [EnableQuery(AllowedQueryOptions = AllowedQueryOptions.All, MaxExpansionDepth = 5)]

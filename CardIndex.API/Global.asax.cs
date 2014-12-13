@@ -1,9 +1,7 @@
 ﻿using System.Data.Entity;
 using System.Web.Http;
-using System.Web.Mvc;
 using AutoMapper;
 using CardIndex.Data;
-using CardIndex.Mappings;
 
 namespace CardIndex.API
 {
@@ -13,22 +11,8 @@ namespace CardIndex.API
         {
             UnityConfig.RegisterComponents(); 
             GlobalConfiguration.Configure(WebApiConfig.Register);
-            InitilizeMapper();
             Database.SetInitializer(new CardIndexContextInitializer());
             GlobalConfiguration.Configuration.Formatters.XmlFormatter.SupportedMediaTypes.Clear();
-        }
-
-        private static void InitilizeMapper()
-        {
-            Mapper.Initialize(config =>
-            {
-                config.AddProfile<GenreMappingProfile>();
-                config.AddProfile<AuthorMappingProfile>();
-                config.AddProfile<BookMappingProfile>();
-                config.AddProfile<BookAuthorMappingProfile>();
-                config.AddProfile<BookGenreMappingProfile>();
-            });
-            Mapper.AssertConfigurationIsValid();
         }
     }
 }

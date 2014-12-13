@@ -1,10 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using AutoMapper;
 using CardIndex.Data.DBInteractions.Interface;
 using CardIndex.Data.Repositories.Interface;
 using CardIndex.Entities;
-using CardIndex.Models;
 using CardIndex.Services.Interface;
 
 namespace CardIndex.Services.Concrete
@@ -30,11 +28,6 @@ namespace CardIndex.Services.Concrete
         {
             var author = _authorRepository.GetById(id);
             return author;
-        }
-
-        public long GetCount()
-        {
-            return _authorRepository.GetAll().Count();
         }
 
         public void CreateAuthor(DbAuthor author)

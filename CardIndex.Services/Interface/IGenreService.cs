@@ -7,7 +7,6 @@ namespace CardIndex.Services.Interface
     {
         IEnumerable<DbGenre> GetGenres();
         DbGenre GetGenreById(long id);
-        long GetCount();
         void CreateGenre(DbGenre genre);
         void UpdateGenre(DbGenre genre);
         void DeleteGenre(long id);

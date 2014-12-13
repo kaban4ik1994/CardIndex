@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using CardIndex.Entities;
-using CardIndex.Models;
 
 namespace CardIndex.Services.Interface
 {
@@ -8,7 +7,6 @@ namespace CardIndex.Services.Interface
     {
         IEnumerable<DbAuthor> GetAuthors();
         DbAuthor GetAuthorById(long id);
-        long GetCount();
         void CreateAuthor(DbAuthor author);
         void UpdateAuthor(DbAuthor author);
         void DeleteAuthor(long id);

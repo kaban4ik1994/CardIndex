@@ -67,10 +67,6 @@
       <Project>{7e91a681-8612-4d5f-bcae-c55df038e384}</Project>
       <Name>CardIndex.Entities</Name>
     </ProjectReference>
-    <ProjectReference Include="..\CardIndex.Models\CardIndex.Models.csproj">
-      <Project>{9c5d1166-43fc-4d1a-ac28-f11ab9b24d7d}</Project>
-      <Name>CardIndex.Models</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

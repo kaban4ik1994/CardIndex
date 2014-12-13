@@ -3,7 +3,6 @@ using CardIndex.Data.DBInteractions.Interface;
 using CardIndex.Data.Repositories.Interface;
 using CardIndex.Entities;
 using CardIndex.Services.Interface;
-using System.Linq;
 
 namespace CardIndex.Services.Concrete
 {
@@ -28,11 +27,6 @@ namespace CardIndex.Services.Concrete
         {
             var genre = _genreRepository.GetById(id);
             return genre;
-        }
-
-        public long GetCount()
-        {
-            return _genreRepository.GetAll().Count();
         }
 
         public void CreateGenre(DbGenre genre)
