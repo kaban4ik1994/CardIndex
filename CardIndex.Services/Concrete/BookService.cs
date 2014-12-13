@@ -71,26 +71,10 @@ namespace CardIndex.Services.Concrete
         public void UpdateBook(DbBook book)
         {
             //hardcode
-
-            foreach (var author in book.Authors)
-            {
-                if (_bookAuthorRepository.GetAll().FirstOrDefault(x => x.AuthorId == author.AuthorId && x.BookId == author.BookId) == null)
-                {
-                    _bookAuthorRepository.Add(author);
-                }
-            }
+            var dbBook = _bookRepository.GetById(book.Id);
+            _bookRepository.Delete(dbBook);
             _unitOfWork.Commit();
-            foreach (var genre in book.Genres)
-            {
-                if (_bookGenreRepository.GetAll().FirstOrDefault(x => x.GenreId == genre.GenreId && x.BookId == genre.BookId) == null)
-                {
-                    _bookGenreRepository.Add(genre);
-                }
-            }
-            _unitOfWork.Commit();
-            book.Authors.Clear();
-            book.Genres.Clear();
-            _bookRepository.Update(book);
+            _bookRepository.Add(book);
             _unitOfWork.Commit();
         }
 
