@@ -16,6 +16,7 @@ namespace CardIndex.API
             ODataModelBuilder builder = new ODataConventionModelBuilder();
             var bookEntitySet= builder.EntitySet<DbBook>("Book");
             bookEntitySet.EntityType.ContainsMany(x => x.Authors);
+            
             builder.EntitySet<DbAuthor>("Author");
             builder.EntitySet<DbGenre>("Genre");
             builder.EntitySet<DbBookDbAuthor>("BookAuthor");

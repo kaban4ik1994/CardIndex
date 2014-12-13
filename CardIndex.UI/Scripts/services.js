@@ -30,7 +30,7 @@ angular.module('app.services', ['ngResource'])
     .factory('AuthorApi', [
         '$resource', function ($resource) {
             return $resource('http://localhost:1605/odata/Author(:key)', { key: '@id' }, {
-                upWdate: {
+                update: {
                     method: 'PUT',
                 },
                 save: {

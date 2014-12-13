@@ -1,9 +1,13 @@
-﻿using System.Web.Http;
+﻿using System.Linq;
+using System.Web.Http;
 using System.Web.Http.Cors;
 using System.Web.OData;
 using System.Web.OData.Query;
+using AutoMapper;
 using CardIndex.Entities;
+using CardIndex.Models;
 using CardIndex.Services.Interface;
+using Microsoft.Practices.ObjectBuilder2;
 
 namespace CardIndex.API.Controllers
 {
@@ -21,7 +25,7 @@ namespace CardIndex.API.Controllers
             _authorService = authorService;
         }
 
-        [EnableQuery(AllowedQueryOptions = AllowedQueryOptions.All)]
+        [EnableQuery(AllowedQueryOptions = AllowedQueryOptions.All, MaxExpansionDepth = 5)]
         public IHttpActionResult Get()
         {
             var books = _bookService.GetBooks();
@@ -34,13 +38,15 @@ namespace CardIndex.API.Controllers
             {
                 return BadRequest(ModelState);
             }
+            book.Authors.ForEach(x => x.BookId = book.Id);
+            book.Genres.ForEach(x => x.BookId = book.Id);
             _bookService.UpdateBook(book);
             return Updated(book);
         }
 
         public IHttpActionResult Post([FromBody]DbBook book)
         {
-            if (!ModelState.IsValid)    
+            if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }

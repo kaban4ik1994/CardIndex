@@ -11,19 +11,13 @@ angular.module('app.controllers', [])
         $scope.itemsPerPage = 5;
         $scope.currentPage = 1;
         $scope.$root.isLoading = true;
-        $scope.sortColumn = -1;
-        $scope.sortDirection = false;
 
         //get books
-        bookApi.get({ $count: true, $skip: ($scope.currentPage - 1) * $scope.itemsPerPage, $top: $scope.itemsPerPage },
-                function (data) {
-                    $scope.$root.isLoading = false;
-                    $scope.books = data.value;
-                    $scope.totalItems = data["@odata.count"];
-                });
+        loadBook();
 
         //modal dialog
         $scope.bookDialog = function (data) {
+            var originalItem = angular.copy(data);
             var modalInstance = $modal.open({
                 templateUrl: '/views/templates/bookpartial',
                 controller: BookPartialCtrl,
@@ -36,27 +30,60 @@ angular.module('app.controllers', [])
                         };
                         if (!data) {
                             resultData.book = { Id: 0, Name: '', Isbn: '', Etc: '', Authors: [], Genres: [] };
-                        };
+                        } else {
+                            resultData.book = data;
+                            resultData.book.Authors.forEach(function (element, index) {
+
+                                if (element.hasOwnProperty('Author') == true) {
+                                    console.log(element.hasOwnProperty('Author'));
+                                    resultData.book.Authors[index] = { Id: element.Author.Id, Name: element.Author.Name };
+                                } else {
+                                    resultData.book.Authors[index] = element;
+                                }
+                            });
+                            resultData.book.Genres.forEach(function (element, index) {
+                                if (element.hasOwnProperty('Genre') == true) {
+                                    resultData.book.Genres[index] = { Id: element.Genre.Id, Name: element.Genre.Name };
+                                } else {
+                                    resultData.book.Genres[index] = element;
+                                }
+                            });
+                        }
+
                         return resultData;
                     }
                 }
             });
 
             modalInstance.result.then(function (item) {
+                var requestItem = angular.copy(item);
+
+                requestItem.Authors.forEach(function (element, index) {
+                    requestItem.Authors[index] = { AuthorId: element.Id };
+                });
+
+                requestItem.Genres.forEach(function (element, index) {
+                    requestItem.Genres[index] = { GenreId: element.Id };
+                });
                 //if new item
                 if (item.Id == 0) {
-                    bookApi.save({}, angular.toJson(item), function (resultData) {
+                    $scope.books.push(item);
+                    bookApi.save({}, angular.toJson(requestItem), function (resultData) {
                         if ($scope.books.length < $scope.itemsPerPage) {
                             item.Id = resultData.Id;
-                            $scope.books.push(item);
                         }
                         $scope.totalItems++;
                     });
                 }
-                    //else update item
+                //else update item
                 else {
-                    bookApi.update({ key: item.Id }, angular.toJson(item));
+                    delete requestItem['Authors@odata.context'];
+                    bookApi.update({ key: item.Id }, angular.toJson(requestItem));
                 }
+            }, function () {
+                data.Name = originalItem.Name;
+                data.Isbn = originalItem.Isbn;
+                data.Etc = originalItem.Etc;
             });
         };
 
@@ -73,7 +100,7 @@ angular.module('app.controllers', [])
             });
             //delete book
             modalInstance.result.then(function (item) {
-                bookApi.delete({key:item.Id });
+                bookApi.delete({ key: item.Id });
                 _.remove($scope.books, item);
                 $scope.totalItems--;
             });
@@ -86,31 +113,34 @@ angular.module('app.controllers', [])
 
         $scope.pageChanged = function () {
             $scope.$root.isLoading = true;
-            bookApi.get({ $count: true, $skip: ($scope.currentPage - 1) * $scope.itemsPerPage, $top: $scope.itemsPerPage },
-                function (data) {
-                    $scope.$root.isLoading = false;
-                    $scope.books = data.value;
-                    $scope.totalItems = data["@odata.count"];
-                });
+            loadBook();
         };
 
         //sorting
-        $scope.sort = function (col) {
-            $scope.sortDirection = !$scope.sortDirection;
-            $scope.sortColumn = col;
-            bookApi.get({ offset: ($scope.currentPage - 1) * $scope.itemsPerPage, limit: $scope.itemsPerPage, sortColumn: $scope.sortColumn, sortDirection: $scope.sortDirection },
-                function (data) {
-                    $scope.isLoading = false;
-                    $scope.books = data.books;
-                    $scope.totalItems = data.count;
-                    $scope.itemsPerPage = data.itemsPerPage;
-                });
+        $scope.sortParam = [];
+        $scope.sortParam.push({ column: 'Id', direction: '' });
+        $scope.sortParam.push({ column: 'Name', direction: '' });
+        $scope.sortParam.push({ column: 'Isbn', direction: '' });
+        $scope.sortParam.push({ column: 'Isbn', direction: '' });
+        $scope.sortParam.push({ column: 'Etc', direction: '' });
+
+        $scope.sortColumn = function () {
+
         };
 
         //filtering
         $scope.filter = function () {
 
         };
+
+        function loadBook() {
+            bookApi.get({ $expand: 'Genres($expand=Genre),Authors($expand=Author)', $count: true, $skip: ($scope.currentPage - 1) * $scope.itemsPerPage, $top: $scope.itemsPerPage, },
+                 function (data) {
+                     $scope.$root.isLoading = false;
+                     $scope.books = data.value;
+                     $scope.totalItems = data["@odata.count"];
+                 });
+        }
 
         $scope.$root.title = 'AngularJS SPA Template for Visual Studio';
         $scope.$on('$viewContentLoaded', function () {
@@ -125,11 +155,7 @@ angular.module('app.controllers', [])
         $scope.currentPage = 1;
         $scope.$root.isLoading = true;
         //get genres
-        genreApi.get({ $count: true, $skip: ($scope.currentPage - 1) * $scope.itemsPerPage, $top: $scope.itemsPerPage }, function (data) {
-            $scope.$root.isLoading = false;
-            $scope.genres = data.value;
-            $scope.totalItems = data["@odata.count"];
-        });
+        loadGenres();
 
         //pagination
         $scope.setPage = function (pageNo) {
@@ -138,15 +164,12 @@ angular.module('app.controllers', [])
 
         $scope.pageChanged = function () {
             $scope.$root.isLoading = true;
-            genreApi.get({ $count: true, $skip: ($scope.currentPage - 1) * $scope.itemsPerPage, $top: $scope.itemsPerPage }, function (data) {
-                $scope.$root.isLoading = false;
-                $scope.genres = data.value;
-                $scope.totalItems = data["@odata.count"];
-            });
+            loadGenres();
         };
 
         //modal dialog
         $scope.genreDialog = function (genre) {
+            var originalItem = angular.copy(genre);
             var modalInstance = $modal.open({
                 templateUrl: '/views/templates/genrepartial',
                 controller: GenrePartialCtrl,
@@ -162,6 +185,7 @@ angular.module('app.controllers', [])
 
             modalInstance.result.then(function (item) {
                 //if new item
+                console.log(item);
                 if (item.Id == 0) {
                     genreApi.save({}, angular.toJson(item), function (data) {
                         if ($scope.genres.length < $scope.itemsPerPage) {
@@ -175,6 +199,8 @@ angular.module('app.controllers', [])
                 else {
                     genreApi.update({ key: item.Id }, angular.toJson(item));
                 }
+            }, function () {
+                genre.Name = originalItem.Name;
             });
         };
 
@@ -197,6 +223,15 @@ angular.module('app.controllers', [])
             });
         };
 
+        //load genres
+        function loadGenres() {
+            genreApi.get({ $count: true, $skip: ($scope.currentPage - 1) * $scope.itemsPerPage, $top: $scope.itemsPerPage }, function (data) {
+                $scope.$root.isLoading = false;
+                $scope.genres = data.value;
+                $scope.totalItems = data["@odata.count"];
+            });
+        }
+
         $scope.$root.title = 'AngularJS SPA Template for Visual Studio';
         $scope.$on('$viewContentLoaded', function () {
             $window.ga('send', 'pageview', { 'page': $location.path(), 'title': $scope.$root.title });
@@ -211,11 +246,7 @@ angular.module('app.controllers', [])
         $scope.$root.isLoading = true;
 
         //get authors 
-        authorApi.get({ $count: true, $skip: ($scope.currentPage - 1) * $scope.itemsPerPage, $top: $scope.itemsPerPage }, function (data) {
-            $scope.$root.isLoading = false;
-            $scope.authors = data.value;
-            $scope.totalItems = data["@odata.count"];
-        });
+        loadAuthors();
 
         //pagination
         $scope.setPage = function (pageNo) {
@@ -224,11 +255,7 @@ angular.module('app.controllers', [])
 
         $scope.pageChanged = function () {
             $scope.$root.isLoading = true;
-            authorApi.get({ $count: true, $skip: ($scope.currentPage - 1) * $scope.itemsPerPage, $top: $scope.itemsPerPage }, function (data) {
-                $scope.$root.isLoading = false;
-                $scope.authors = data["value"];
-                $scope.totalItems = data["@odata.count"];
-            });
+            loadAuthors();
         };
 
 
@@ -253,6 +280,7 @@ angular.module('app.controllers', [])
 
         //author modal dialog
         $scope.authorDialog = function (author) {
+            var originalIntem = angular.copy(author);
             var modalInstance = $modal.open({
                 templateUrl: '/views/templates/authorpartial',
                 controller: AuthorPartialCtrl,
@@ -265,6 +293,7 @@ angular.module('app.controllers', [])
                     },
                 }
             });
+
 
             modalInstance.result.then(function (item) {
                 //if new item
@@ -281,10 +310,18 @@ angular.module('app.controllers', [])
                 else {
                     authorApi.update({ key: item.Id }, angular.toJson(item));
                 }
+            }, function () {
+                author.Name = originalIntem.Name;
             });
         };
 
-
+        function loadAuthors() {
+            authorApi.get({ $count: true, $skip: ($scope.currentPage - 1) * $scope.itemsPerPage, $top: $scope.itemsPerPage }, function (data) {
+                $scope.$root.isLoading = false;
+                $scope.authors = data.value;
+                $scope.totalItems = data["@odata.count"];
+            });
+        }
 
         $scope.$root.title = 'AngularJS SPA Template for Visual Studio';
         $scope.$on('$viewContentLoaded', function () {
@@ -317,6 +354,8 @@ angular.module('app.controllers', [])
 
 var BookPartialCtrl = function ($scope, $modalInstance, item) {
 
+    var sAuthors = angular.copy(item.book.Authors);
+    var sGenres = angular.copy(item.book.Genres);
     $scope.book = item.book;
     $scope.isDialogDataLoading = { Authors: true, Genres: true };
     $scope.AuthorCustomTexts = { buttonDefaultText: 'Select Authors' };
@@ -332,8 +371,8 @@ var BookPartialCtrl = function ($scope, $modalInstance, item) {
         $scope.AllGenres = data.value;
     });
 
-    $scope.AuthorDropDownSettings = { displayProp: 'Name', idProp: 'Id', externalIdProp: 'AuthorId' };
-    $scope.GenreDropDownSettings = { displayProp: 'Name', idProp: 'Id', externalIdProp: 'GenreId' };
+    $scope.AuthorDropDownSettings = { displayProp: 'Name', idProp: 'Id', externalIdProp: '', enableSearch: true };
+    $scope.GenreDropDownSettings = { displayProp: 'Name', idProp: 'Id', externalIdProp: '', enableSearch: true };
 
     $scope.ok = function (book) {
         if ((!book.Name == '') && (!book.Isbn == '') && (!book.Etc == '')) {
@@ -344,6 +383,8 @@ var BookPartialCtrl = function ($scope, $modalInstance, item) {
         }
     };
     $scope.cancel = function () {
+        $scope.book.Authors = sAuthors;
+        $scope.book.Genres = sGenres;
         $modalInstance.dismiss('cancel');
     };
 };
