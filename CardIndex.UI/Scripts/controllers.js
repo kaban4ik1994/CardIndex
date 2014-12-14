@@ -120,7 +120,6 @@ angular.module('app.controllers', [])
         };
 
         //sorting
-
         $scope.sortParam = { column: '', direction: '' };
         $scope.sort = function (column) {
             $scope.sortParam.column = column;
@@ -139,17 +138,38 @@ angular.module('app.controllers', [])
         };
 
         //filtering
-        $scope.filter = function () {
+        $scope.status = {
+            isopen: false
+        };
+        $scope.filterTypes = ['None', 'Name', 'Isbn', 'Etc', 'Genres', 'Authors'];
+
+        $scope.filterValue = '';
+        $scope.filter = function (param) {
+            if (param != 'None') {
+                $scope.currentFilter = param;
+                
+            } else {
+                $scope.currentFilter = '';
+            }
+            loadBooks();
 
         };
 
         function loadBooks() {
-            var sortString;
+            var sortString = undefined;
+            var filterString = undefined;
             if ($scope.sortParam !== undefined) {
-                sortString = $scope.sortParam.column + ' ' + $scope.sortParam.direction;
+                if ($scope.sortParam.column != '' && $scope.sortParam.direction != '') {
+                    sortString = $scope.sortParam.column + ' ' + $scope.sortParam.direction;
+                }
             }
 
-            bookApi.get({ $expand: 'Genres($expand=Genre),Authors($expand=Author)', $orderby: sortString, $count: true, $skip: ($scope.currentPage - 1) * $scope.itemsPerPage, $top: $scope.itemsPerPage, },
+            if ($scope.currentFilter) {
+                filterString = $scope.currentFilter + ' eq ' + "'" + $scope.filterValue + "'";
+                console.log(filterString);
+            }
+
+            bookApi.get({ $expand: 'Genres($expand=Genre),Authors($expand=Author)', $filter: filterString, $orderby: sortString, $count: true, $skip: ($scope.currentPage - 1) * $scope.itemsPerPage, $top: $scope.itemsPerPage },
                  function (data) {
                      $scope.$root.isLoading = false;
                      $scope.books = data.value;
