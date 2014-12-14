@@ -57,7 +57,6 @@ angular.module('app', ['ui.bootstrap', 'angularjs-dropdown-multiselect', 'ui.rou
         // Allows to retrieve UI Router state information from inside templates
         $rootScope.$state = $state;
         $rootScope.$stateParams = $stateParams;
-
         $rootScope.$on('$stateChangeSuccess', function (event, toState) {
 
             // Sets the layout name, which can be used to display different layouts (header, footer etc.)

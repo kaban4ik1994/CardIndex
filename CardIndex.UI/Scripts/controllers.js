@@ -8,7 +8,6 @@ angular.module('app.controllers', [])
     // Path: /
     .controller('HomeCtrl', ['$scope', '$location', '$window', '$modal', 'BookApi', 'GenreApi', 'AuthorApi', function ($scope, $location, $window, $modal, bookApi, genreApi, authorApi) {
 
-        $scope.itemsPerPage = 5;
         $scope.currentPage = 1;
         $scope.$root.isLoading = true;
 
@@ -141,7 +140,7 @@ angular.module('app.controllers', [])
         $scope.status = {
             isopen: false
         };
-        $scope.filterTypes = ['None', 'Name', 'Isbn', 'Etc', 'Genres', 'Authors'];
+        $scope.filterTypes = ['None', 'Name', 'Isbn', 'Etc'];
 
         $scope.filterValue = '';
         $scope.filter = function (param) {
@@ -177,16 +176,12 @@ angular.module('app.controllers', [])
                  });
         }
 
-        $scope.$root.title = 'AngularJS SPA Template for Visual Studio';
-        $scope.$on('$viewContentLoaded', function () {
-            $window.ga('send', 'pageview', { 'page': $location.path(), 'title': $scope.$root.title });
-        });
+        $scope.$root.title = 'CardIndex | Books';
     }])
 
     // Path: /Genres
     .controller('GenreCtrl', ['$scope', '$location', '$window', '$modal', 'GenreApi', function ($scope, $location, $window, $modal, genreApi) {
 
-        $scope.itemsPerPage = 5;
         $scope.currentPage = 1;
         $scope.$root.isLoading = true;
         //get genres
@@ -267,16 +262,13 @@ angular.module('app.controllers', [])
             });
         }
 
-        $scope.$root.title = 'AngularJS SPA Template for Visual Studio';
-        $scope.$on('$viewContentLoaded', function () {
-            $window.ga('send', 'pageview', { 'page': $location.path(), 'title': $scope.$root.title });
-        });
+        $scope.$root.title = 'CardIndex | Genres';
+
     }])
 
      // Path: /Authors
     .controller('AuthorCtrl', ['$scope', '$location', '$window', '$modal', 'AuthorApi', function ($scope, $location, $window, $modal, authorApi) {
 
-        $scope.itemsPerPage = 5;
         $scope.currentPage = 1;
         $scope.$root.isLoading = true;
 
@@ -359,33 +351,25 @@ angular.module('app.controllers', [])
             });
         }
 
-        $scope.$root.title = 'AngularJS SPA Template for Visual Studio';
-        $scope.$on('$viewContentLoaded', function () {
-            $window.ga('send', 'pageview', { 'page': $location.path(), 'title': $scope.$root.title });
-        });
+        $scope.$root.title = 'CardIndex | Authors';
+
     }])
 
     // Path: /login
     .controller('LoginCtrl', ['$scope', '$location', '$window', function ($scope, $location, $window) {
         $scope.$root.isLoading = false;
-        $scope.$root.title = 'AngularJS SPA | Sign In';
+        $scope.$root.title = 'CardIndex | Sign In';
         // TODO: Authorize a user
         $scope.login = function () {
             $location.path('/');
             return false;
         };
-        $scope.$on('$viewContentLoaded', function () {
-            $window.ga('send', 'pageview', { 'page': $location.path(), 'title': $scope.$root.title });
-        });
     }])
 
     // Path: /error/404
     .controller('Error404Ctrl', ['$scope', '$location', '$window', function ($scope, $location, $window) {
         $scope.$root.isLoading = false;
         $scope.$root.title = 'Error 404: Page Not Found';
-        $scope.$on('$viewContentLoaded', function () {
-            $window.ga('send', 'pageview', { 'page': $location.path(), 'title': $scope.$root.title });
-        });
     }]);
 
 var BookPartialCtrl = function ($scope, $modalInstance, item) {

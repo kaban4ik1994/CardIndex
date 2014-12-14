@@ -1,9 +1,10 @@
-﻿<!DOCTYPE html>
+﻿@using CardIndex.Helpers
+<!DOCTYPE html>
 <html lang="en" ng-app="app">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title ng-bind="title">@(PageData["title"] ?? "AngularJS SPA Template for Visual Studio")</title>
+    <title ng-bind="title">@(PageData["title"] ?? "CardIndex")</title>
     <meta name="description" content="@PageData["description"]">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     @Styles.Render("~/content/css/app")
@@ -48,29 +49,11 @@
     <div id="ui-view" class="container" ng- ui-view data-tmpl-url="@Request.RequestContext.RouteData.DataTokens["templateUrl"]">
         @RenderBody()
     </div>
-    
-    <div ng-show="isLoading" class="col-md-12 " style="text-align: center">
+    <div ng-show="isLoading; itemsPerPage=@ConfigHelper.ItemPerPage" class="col-md-12 " style="text-align: center">
         <img class="img-circle" src="/Content/fonts/ProgressBar.GIF" alt="">
     </div>
 
     @Scripts.Render("~/js/app")
 
-    @*
-        Google Analytics
-        ----------------
-        Google recommends that this script be placed at the top of the page. Factors to consider: if you place this
-        script at the top of the page, you'll be able to count users who don't fully load the page, and you'll incur
-        the max number of simultaneous connections of the browser.
-        https://developers.google.com/analytics/devguides/collection/analyticsjs/
-    *@
-    <script>
-    (function (i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
-            (i[r].q = i[r].q || []).push(arguments)
-        }, i[r].l = 1 * new Date(); a = s.createElement(o),
-        m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-    ga('create', '@WebConfigurationManager.AppSettings["GoogleAnalytics:PropertyID"]', '@(Request.IsLocal ? "none" : "auto")');
-    </script>
 </body>
 </html>
