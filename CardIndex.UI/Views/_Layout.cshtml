@@ -49,7 +49,7 @@
     <div id="ui-view" class="container" ng- ui-view data-tmpl-url="@Request.RequestContext.RouteData.DataTokens["templateUrl"]">
         @RenderBody()
     </div>
-    <div ng-show="isLoading; itemsPerPage=@ConfigHelper.ItemPerPage" class="col-md-12 " style="text-align: center">
+    <div ng-show="isLoading" ng-hide="itemsPerPage=@ConfigHelper.ItemPerPage" class="col-md-12 " style="text-align: center">
         <img class="img-circle" src="/Content/fonts/ProgressBar.GIF" alt="">
     </div>
 
