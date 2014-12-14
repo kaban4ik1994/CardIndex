@@ -22,9 +22,6 @@ namespace CardIndex.API
             builder.EntitySet<DbBookDbAuthor>("BookAuthor");
             builder.EntitySet<DbBookDbGenre>("BookGenre");
 
-            var bookType = builder.EntityType<DbBook>();
-      
-
             var model= builder.GetEdmModel();
 
             config.MapODataServiceRoute("odata", "odata", model);

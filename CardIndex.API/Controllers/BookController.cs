@@ -4,7 +4,6 @@ using System.Web.OData;
 using System.Web.OData.Query;
 using CardIndex.Entities;
 using CardIndex.Services.Interface;
-using Microsoft.Practices.ObjectBuilder2;
 
 namespace CardIndex.API.Controllers
 {

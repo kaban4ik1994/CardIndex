@@ -1,6 +1,5 @@
 ﻿using System.Data.Entity;
 using System.Web.Http;
-using AutoMapper;
 using CardIndex.Data;
 
 namespace CardIndex.API
