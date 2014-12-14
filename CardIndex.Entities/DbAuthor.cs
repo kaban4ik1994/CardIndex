@@ -7,8 +7,6 @@ namespace CardIndex.Entities
     [Table("Author")]
     public class DbAuthor
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long Id { get; set; }
         public string Name { get; set; }
 

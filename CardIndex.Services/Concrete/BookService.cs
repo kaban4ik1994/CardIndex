@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using CardIndex.Data.DBInteractions.Interface;
 using CardIndex.Data.Repositories.Interface;
 using CardIndex.Entities;
@@ -9,11 +10,15 @@ namespace CardIndex.Services.Concrete
     public class BookService : IBookService
     {
         private readonly IBookRepository _bookRepository;
+        private readonly IBookAuthorRepository _bookAuthorRepository;
+        private readonly IBookGenreRepository _bookGenreRepository;
         private readonly IUnitOfWork _unitOfWork;
 
-        public BookService(IBookRepository bookRepository, IUnitOfWork unitOfWork)
+        public BookService(IBookRepository bookRepository, IBookAuthorRepository bookAuthorRepository, IBookGenreRepository bookGenreRepository, IUnitOfWork unitOfWork)
         {
             _bookRepository = bookRepository;
+            _bookAuthorRepository = bookAuthorRepository;
+            _bookGenreRepository = bookGenreRepository;
             _unitOfWork = unitOfWork;
         }
 
@@ -38,11 +43,27 @@ namespace CardIndex.Services.Concrete
         public void UpdateBook(DbBook book)
         {
             //hardcode
-            var dbBook = _bookRepository.GetById(book.Id);
-            _bookRepository.Delete(dbBook);
+            var authors = new List<DbBookDbAuthor>(book.Authors);
+            var genres = new List<DbBookDbGenre>(book.Genres);
+            authors.ForEach(x => x.BookId = book.Id);
+            genres.ForEach(x => x.BookId = book.Id);
+
+            var originalAuthors = new List<DbBookDbAuthor>(_bookAuthorRepository.GetAll().Where(x => x.BookId == book.Id));
+            var originalGenres = new List<DbBookDbGenre>(_bookGenreRepository.GetAll().Where(x => x.BookId == book.Id));
+
+            originalAuthors.ForEach(x => _bookAuthorRepository.Delete(x));
+            originalGenres.ForEach(x => _bookGenreRepository.Delete(x));
             _unitOfWork.Commit();
-            _bookRepository.Add(book);
+
+            authors.ForEach(x => _bookAuthorRepository.Add(x));
+            genres.ForEach(x => _bookGenreRepository.Add(x));
             _unitOfWork.Commit();
+
+            book.Authors.Clear();
+            book.Genres.Clear();
+            _bookRepository.Update(book);
+            _unitOfWork.Commit();
+
         }
 
         public void DeleteBook(long id)

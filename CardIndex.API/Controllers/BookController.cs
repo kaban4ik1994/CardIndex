@@ -31,8 +31,7 @@ namespace CardIndex.API.Controllers
             {
                 return BadRequest(ModelState);
             }
-            book.Authors.ForEach(x => x.BookId = book.Id);
-            book.Genres.ForEach(x => x.BookId = book.Id);
+            
             _bookService.UpdateBook(book);
             return Updated(book);
         }

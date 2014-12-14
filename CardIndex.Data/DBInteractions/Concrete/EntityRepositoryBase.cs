@@ -34,6 +34,10 @@ namespace CardIndex.Data.DBInteractions.Concrete
             _dataContext.Entry(entity).State = EntityState.Modified;
         }
 
+        public virtual void Detach(T entity)
+        {
+            _dataContext.Entry(entity).State = EntityState.Detached;
+        }
 
         public virtual void Delete(T entity)
         {
@@ -63,7 +67,7 @@ namespace CardIndex.Data.DBInteractions.Concrete
         {
             return _dbSet.Where(where).AsQueryable();
         }
-        
+
         public T Get(Func<T, Boolean> where)
         {
             return _dbSet.Where(where).FirstOrDefault();

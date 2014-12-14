@@ -1,4 +1,5 @@
 ﻿using System.Data.Entity;
+using CardIndex.Data.Mapping;
 using CardIndex.Entities;
 
 namespace CardIndex.Data
@@ -8,12 +9,17 @@ namespace CardIndex.Data
         public CardIndexContext()
             : base("CardIndexDBConnectionString")
         {
-            Configuration.LazyLoadingEnabled = false;
-            Configuration.ProxyCreationEnabled = false;
+        //    Configuration.LazyLoadingEnabled = false;
+         //   Configuration.ProxyCreationEnabled = false;
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Configurations.Add(new AuthorMap());
+            modelBuilder.Configurations.Add(new BookAuthorMap());
+            modelBuilder.Configurations.Add(new BookGenreMap());
+            modelBuilder.Configurations.Add(new BookMap());
+            modelBuilder.Configurations.Add(new GenreMap());
             base.OnModelCreating(modelBuilder);
         }
 
