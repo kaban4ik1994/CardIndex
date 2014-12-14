@@ -13,7 +13,7 @@ angular.module('app.controllers', [])
         $scope.$root.isLoading = true;
 
         //get books
-        loadBook();
+        loadBooks();
 
         //modal dialog
         $scope.bookDialog = function (data) {
@@ -67,20 +67,23 @@ angular.module('app.controllers', [])
                 });
                 //if new item
                 if (item.Id == 0) {
-                    $scope.books.push(item);
+
+                    if ($scope.books.length < $scope.itemsPerPage) {
+                        $scope.books.push(item);
+                    }
                     bookApi.save({}, angular.toJson(requestItem), function (resultData) {
-                        if ($scope.books.length < $scope.itemsPerPage) {
-                            item.Id = resultData.Id;
-                        }
-                        $scope.totalItems++;
+                        item.Id = resultData.Id;
                     });
+                    $scope.totalItems++;
                 }
-                //else update item
+
+                    //else update item
                 else {
                     delete requestItem['Authors@odata.context'];
                     bookApi.update({ key: item.Id }, angular.toJson(requestItem));
                 }
             }, function () {
+                if (!data.Name) return;
                 data.Name = originalItem.Name;
                 data.Isbn = originalItem.Isbn;
                 data.Etc = originalItem.Etc;
@@ -113,18 +116,25 @@ angular.module('app.controllers', [])
 
         $scope.pageChanged = function () {
             $scope.$root.isLoading = true;
-            loadBook();
+            loadBooks();
         };
 
         //sorting
-        $scope.sortParam = [];
-        $scope.sortParam.push({ column: 'Id', direction: '' });
-        $scope.sortParam.push({ column: 'Name', direction: '' });
-        $scope.sortParam.push({ column: 'Isbn', direction: '' });
-        $scope.sortParam.push({ column: 'Isbn', direction: '' });
-        $scope.sortParam.push({ column: 'Etc', direction: '' });
 
-        $scope.sortColumn = function () {
+        $scope.sortParam = { column: '', direction: '' };
+        $scope.sort = function (column) {
+            $scope.sortParam.column = column;
+            if ($scope.sortParam.direction == 'asc') {
+                $scope.sortParam.direction = 'desc';
+
+            }
+            else if ($scope.sortParam.direction == 'desc') {
+                $scope.sortParam.direction = 'asc';
+            } else {
+
+                $scope.sortParam.direction = 'asc';
+            }
+            loadBooks();
 
         };
 
@@ -133,8 +143,13 @@ angular.module('app.controllers', [])
 
         };
 
-        function loadBook() {
-            bookApi.get({ $expand: 'Genres($expand=Genre),Authors($expand=Author)', $count: true, $skip: ($scope.currentPage - 1) * $scope.itemsPerPage, $top: $scope.itemsPerPage, },
+        function loadBooks() {
+            var sortString;
+            if ($scope.sortParam !== undefined) {
+                sortString = $scope.sortParam.column + ' ' + $scope.sortParam.direction;
+            }
+
+            bookApi.get({ $expand: 'Genres($expand=Genre),Authors($expand=Author)', $orderby: sortString, $count: true, $skip: ($scope.currentPage - 1) * $scope.itemsPerPage, $top: $scope.itemsPerPage, },
                  function (data) {
                      $scope.$root.isLoading = false;
                      $scope.books = data.value;
@@ -185,7 +200,6 @@ angular.module('app.controllers', [])
 
             modalInstance.result.then(function (item) {
                 //if new item
-                console.log(item);
                 if (item.Id == 0) {
                     genreApi.save({}, angular.toJson(item), function (data) {
                         if ($scope.genres.length < $scope.itemsPerPage) {
@@ -200,6 +214,7 @@ angular.module('app.controllers', [])
                     genreApi.update({ key: item.Id }, angular.toJson(item));
                 }
             }, function () {
+                if (!genre.Name) return;
                 genre.Name = originalItem.Name;
             });
         };
@@ -311,6 +326,7 @@ angular.module('app.controllers', [])
                     authorApi.update({ key: item.Id }, angular.toJson(item));
                 }
             }, function () {
+                if (!author.Name) return;
                 author.Name = originalIntem.Name;
             });
         };
